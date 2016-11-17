@@ -1,178 +1,870 @@
-﻿
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width,hight=device-hight,minimum-scale=1.0,maximum-scale=1.0,ser-scalable=none"/>
-<title>DOGE</title>
-
+<!DOCTYPE html><html lang="en"><head>
+<title> 多媒体信息概论笔记---小书匠,在线编辑器,MARKDOWN,Evernote,文件版本</title>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="()">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <style type="text/css">
-body { margin: 0; padding: 0; position: relative; background-image: url(images/xh.jpg); background-position: center; /*background-repeat: no-repeat;*/ width: 100%; height: 100%; background-size: 100% 100%; }
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+small {
+  font-size: 85%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+cite {
+  font-style: normal;
+}
+
+
+h1.story_title {
+	margin: 0.7em 0;
+}
+.story_tags {
+	margin: 0 0 1.2em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5em 0;
+	margin: 1.0em 0 .6em 0;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 40px;
+}
+
+h1 {
+  font-size: 38.5px;
+}
+
+h2 {
+  font-size: 31.5px;
+}
+
+h3 {
+  font-size: 24.5px;
+}
+
+h4 {
+  font-size: 17.5px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 11.9px;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0 0 10px 35px;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+
+dl {
+  margin-bottom: 20px;
+}
+
+dt,
+dd {
+  line-height: 20px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 10px;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
+}
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #dddddd;
+}
+
+blockquote p {
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+blockquote small {
+  display: block;
+  line-height: 20px;
+  color: #999999;
+}
+
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 20px;
+}
+img {
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+	border: 0;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+	border: 1px solid rgba(34,36,38,.15);
+}
+.tag.label{
+display: inline-block;
+vertical-align: baseline;
+line-height: 1;
+margin: 0em 0.125em;
+background-color: #e8e8e8;
+border-color: #e8e8e8;
+background-image: none;
+padding: 0.6em 0.8em;
+color: rgba(0, 0, 0, 0.6);
+text-transform: none;
+font-weight: bold;
+border-radius: 0.2857rem;
+box-sizing: border-box;
+font-size: 0.7428rem;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-celled.table tr td,.table-celled.table tr th {
+    border-left: 1px solid rgba(34,36,38,.1)
+}
+
+.table-celled.table tr td:first-child,.table-celled.table tr th:first-child {
+    border-left: none
+}
+
+.toc ul {
+	list-style: none;
+}
+p {
+	line-height: 1.6;
+}
+body>p {
+  margin-bottom: 1.8em;
+}
+body>p>img.center,
+body>p>a>img.center {
+  display: block;
+  margin: 0 auto;
+  background-color: rgba(128,128,128,0.3);
+}
+body {
+	font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, 'Hiragino Sans GB', STHeiti, "Microsoft YaHei", "微软雅黑", 'WenQuanYi Micro Hei', STXihei, "华文细黑", Heiti, "黑体", SimSun, "宋体", Song, sans-serif;
+  font-size: 1.15em;
+  font-weight: 100;
+//  line-height: 1.8em;
+  color: #2f2f2f;
+}
+em.cjk_emphasis{
+	font-style: normal;
+	font-family: Georgia,"Times New Roman",Times,"楷体","AR PL UKai CN", "NSimSun","Songti SC","SimSun",serif!important;
+}
+body dt,
+body dd {
+  line-height: 1.35em;
+}
+body code, body .xiaoshujiang_code {
+//	background-color: #D6DBDF;
+	border: 0;
+  border-radius: 4px;
+//  color: #2C3E50;
+  font-size: 90%;
+//  padding: 2px 4px;
+}
+code {
+	background-color: #D6DBDF;
+	border-radius: 4px;
+	color: #2C3E50;
+	padding: 2px 4px;
+}
+.xiaoshujiang_code ol{
+	margin-bottom: 0px;
+}
+body h1 {
+  line-height: 1.6;
+}
+body h2 {
+  line-hieght: 1.1;
+}
+body h3 {
+  line-height: 1.1;
+}
+
+/**
+ * Treeview syntax highlighting based on highlight.js
+ * Copyright (c) 2014-2015, Asciidocfx Team, (MIT Licensed)
+ * https://github.com/asciidocfx/highlight-treeview.js
+ */
+.language-treeview.hljs{
+  position: relative;
+}
+.hljs-folder,
+.hljs-hiddenfile,
+.hljs-file {
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    height: 16px;
+}
+.hljs-folder:before,
+.hljs-file:before,
+.hljs-hiddenfile:before {
+    top: 0;
+    content: '';
+    width: 14px;
+    height: 12px;
+    margin-top: 0px;
+    margin-right: 3px;
+    position: relative;
+    display: inline-block;
+    background-size: 14px;
+    background-repeat: no-repeat;
+}
+.hljs-file:before,
+.hljs-hiddenfile:before {
+    height: 14px;
+    margin-left: 1px;
+}
+.hljs-hiddenfile {
+    opacity: 0.6;
+}
+.hljs-file.photo:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c5";
+}
+.hljs-file.plain:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f016";
+}
+.hljs-file.source:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c9";
+}
+.hljs-file.archive:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c6";
+}
+.hljs-file.audio:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c7";
+}
+.hljs-file.video:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c8";
+}
+.hljs-file.pdf:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c1";
+}
+.hljs-file.xls:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c3";
+}
+.hljs-file.doc:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c2";
+}
+.hljs-file.ppt:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f1c4";
+}
+.hljs-folder:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f114";
+}
+.hljs-hiddenfile:before {
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f016";
+}
+.hljs-tvline {
+    margin-left: 6px;
+    position: absolute;
+    text-indent: -99em;
+    padding-bottom: 8px;
+    vertical-align: top;
+    display: inline-block;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: rgb(94, 144, 117);
+}
+.hljs-folder-branch {
+    width: 8px;
+    height: 8px;
+    margin-top: -1px;
+    margin-left: 6px;
+    text-indent: -99em;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(94, 144, 117);
+}
+.hljs-folder-branch.win {
+    width: 14px;
+    margin-right: 2px;
+}
+.hljs-folder-last-branch {
+    height: 7px;
+    width: 7px;
+    margin-left: 6px;
+    text-indent: -99em;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(94, 144, 117);
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: rgb(94, 144, 117);
+}
+.hljs-folder-last-branch.win {
+    width: 13px;
+    margin-right: 2px;
+}
+
+
+/**
+ * Treeview syntax highlighting based on highlight.js
+ */
+
+
+.mark{
+	border: 0;
+  background-color: #ddf3e7;
+  border-radius: 4px;
+  color: #29754d;
+  font-size: 90%;
+  padding: 2px 4px;
+}
+.line_mark{
+	border: 1px dashed #3A4C42;
+}
+code .mark, .xiaoshujiang_code .mark{
+	border-radius: 0px;
+	font-size: initial;
+	padding: initial;
+}
+a.attachment{
+	background-color: #ecf0f3;
+	border: 1px solid #bec6cb;
+	display: inline-block;
+	padding: 5px;
+	margin: 2px;
+	min-width: 250px;
+}
+a.attachment i.fa{
+	font-size: 3em;
+  float: left;
+  margin-right: 0.2em;
+}
+a.attachment .filename{
+	vertical-align: top;
+  text-align: left;
+  font-weight: bold;
+}
+a.attachment .filesize{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  opacity: .6;
+  font-size: 80%;
+  white-space: nowrap;
+}
+.checkbox .checked{
+	text-decoration: line-through;
+}
+.flow-chart, .sequence-diagram{
+	text-align: center;
+}
+.plot, .plot-image{
+	text-align: center;
+	min-height: 200px;
+	min-width: 200px;
+}
+
+pre, .xiaoshujiang_pre {
+	line-height: initial !important;
+	word-wrap: break-word;
+	word-break: break-word;
+}
+
+.xiaoshujiang_pre {
+	margin: 1em 0px;
+	font-family: monospace;
+	white-space: pre;
+}
+
+.story_align_left, .story_align_left .story_image_container {
+	text-align: left;
+}
+.story_align_right, .story_align_right .story_image_container {
+	text-align: right;
+}
+.story_align_center, .story_align_center .story_image_container {
+	text-align: center;
+}
+.story_align_justify, .story_align_justify .story_image_container {
+	text-align: justify;
+}
+
+
+/** 
+ * code line nums
+ */
+code.hljs.code_linenums, .xiaoshujiang_code.hljs.code_linenums{
+	position: relative;
+}
+.ol_linenums{
+	padding: 0px;
+	margin-left: 30px;
+	border-left: 1px solid #e0e0e0;
+}
+.li_linenum{
+	line-height: 20px;
+	margin-left: 10px;
+	list-style: none;
+	counter-increment: lines 1;
+}
+.li_linenum.li_list_style{
+	list-style: inherit;
+	margin-left: 5px;
+}
+.li_linenum:before, .li_linenum_before_span{
+	content: counter(lines, decimal);
+  position: absolute;
+  left: 0px;
+  text-align: center;
+  width: 2.5em;
+	opacity: 0.5;
+  vertical-align: top;
+}
+.li_linenum_before_span_hide{
+	display: none;
+}
+.xiaoshujiang_code .code_line_break_hack{
+	margin:0;
+	border:0;
+	border-top:0;
+	border-bottom:0;
+}
+/** 
+ * code line nums
+ */
+.mathjax-container{
+	text-align: center;
+}
+div.mathjax{
+	max-width: 700px;
+	margin: 0 auto;
+	font-size: 14px;
+}
+text{
+	font-size: 14px;
+}
+
+/**
+ * block image
+ */
+
+.story_image_container{
+	text-align: center;
+}
+.story_image_container>.story_image{
+	display: inline-block;
+  position: relative;
+	max-width: 80%;
+}
+.story_image_caption{
+	border-bottom: 1px solid #d9d9d9;
+	display: inline-block;
+	color: #999;
+	padding: 10px;
+}
+.story_image_blank_caption{
+	border-bottom: 0px;
+}
+/**
+.story_image:before, .story_image:after{
+	content: '';
+	position: absolute;
+	z-index: -2;
+	bottom: 13px;
+	left: 10px;
+	width: 50%;
+	height: 20%;
+	border-radius: 10px/90px;
+	box-shadow: 0 15px 10px rgba(0,0,0,0.7);
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg);
+	-o-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+}
+.story_image:after {
+	right: 10px;
+	left: auto;
+	-webkit-transform: rotate(3deg);
+	-moz-transform: rotate(3deg);
+	-ms-transform: rotate(3deg);
+	-o-transform: rotate(3deg);
+	transform: rotate(3deg);
+}
+
+**/
+.story_image>img{
+	border-radius: 0.3125em;
+	box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+}
+.story_inline_image>img{
+	max-width: 50%;
+	vertical-align: bottom;
+}
+
+/*
+
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: white;
+  color: black;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.hljs-annotation,
+.diff .hljs-header,
+.hljs-chunk,
+.apache .hljs-cbracket {
+  color: #008000;
+}
+
+.hljs-keyword,
+.hljs-id,
+.hljs-built_in,.css
+.smalltalk .hljs-class,
+.hljs-winutils,
+.bash .hljs-variable,
+.tex .hljs-command,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title,
+.xml .hljs-tag,
+.xml .hljs-tag .hljs-value {
+  color: #00f;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-parent,
+.hljs-tag .hljs-value,
+.hljs-rule .hljs-value,
+.ruby .hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.hljs-template_tag,
+.django .hljs-variable,
+.hljs-addition,
+.hljs-flow,
+.hljs-stream,
+.apache .hljs-tag,
+.hljs-date,
+.tex .hljs-formula,
+.coffeescript .hljs-attribute,
+.hljs-name {
+  color: #a31515;
+}
+
+.ruby .hljs-string,
+.hljs-decorator,
+.hljs-filter .hljs-argument,
+.hljs-localvars,
+.hljs-array,
+.hljs-attr_selector,
+.hljs-pseudo,
+.hljs-pi,
+.hljs-doctype,
+.hljs-deletion,
+.hljs-envvar,
+.hljs-shebang,
+.hljs-preprocessor,
+.hljs-pragma,
+.userType,
+.apache .hljs-sqbracket,
+.nginx .hljs-built_in,
+.tex .hljs-special,
+.hljs-prompt {
+  color: #2b91af;
+}
+
+.hljs-phpdoc,
+.hljs-dartdoc,
+.hljs-javadoc,
+.hljs-xmlDocTag {
+  color: #808080;
+}
+
+.hljs-type,
+.hljs-typename { font-weight: bold; }
+
+.vhdl .hljs-string { color: #666666; }
+.vhdl .hljs-literal { color: #a31515; }
+.vhdl .hljs-attribute { color: #00b0e8; }
+
+.xml .hljs-attribute { color: #f00; }
 
 
 
 </style>
+</head><body>
+<div><div class="preview" id="wmd-preview">
 
-</head>
-<body id="body" onLoad="init()">
-<script type="text/javascript" src="js/ThreeCanvas.js"></script>
-<script type="text/javascript" src="js/Snow.js"></script>
+	<div class="preview"><h1 class="story_title">多媒体信息概论笔记</h1><div class="story_tags"><div class="tag blue label">新建</div><div class="tag blue label">模板</div><div class="tag blue label">小书匠</div></div><h3 id="2016e5b9b410e69c888e697a5192700" name="2016e5b9b410e69c888e697a5192700"><a name="2016e5b9b410e69c888e697a5192700" class="blank_anchor_name"></a>2016年10月8日19:27:00</h3>
+<p>熵 H  = 求和P(i)log2(P(i))</p>
+<p>熵就是平均代码长度最小的时候压缩值</p>
+<p>平均代码长度和熵的差值就是冗余量，</p>
+<p><strong>最优码</strong><br>
+<span class="mark  ">冗余量</span>最小的编码</p>
+<p>编码符号的平均二进制长额度&gt;=信息源的<span class="mark  ">熵</span><br>
+熵是平均最小码长</p>
+<p>熵的最大值是 log(2)N,此时所有符号概率相等，<br>
+P(i) 符号i zai xinxiyuan zhong chuxian de 概率</p>
+<p>平均码长 L = 求和i-N P(i)l(i)</p>
+<h3 id="shnnon-fano20coding" name="shnnon-fano20coding"><a name="shnnon-fano20coding" class="blank_anchor_name"></a>Shnnon-Fano coding</h3>
+<p>香农范诺编码算法</p>
+<blockquote>
+<p>1.将原始符号及其概率按照非增次序排列<br>
+2.将符号分成概率和最接近的两组，第一组以0编码，第二组以 <strong>1</strong> 编码<br>
+3.在已有编码后按照规则追加0/1，重复步骤2直到最后只剩一个符号<br>
+<strong>最简单</strong>，但是不保证最优， H+1&gt;= 平均码长 &gt;=H</p>
+</blockquote>
+<h3 id="e99d99e68081huffman20e7ae97e6b395efbc8ce69c80e4bc98e7bc96e7a081" name="e99d99e68081huffman20e7ae97e6b395efbc8ce69c80e4bc98e7bc96e7a081"><a name="e99d99e68081huffman20e7ae97e6b395efbc8ce69c80e4bc98e7bc96e7a081" class="blank_anchor_name"></a>静态huffman 算法，最优编码</h3>
+<blockquote>
+<ol>
+<li><p>以每个源符号的概率为权， 组成 <strong>N</strong> 个只有根节点的二叉树的集合</p></li>
+<li><p>将两个权值最小的二叉树wi,wj, 合并成一个根为 wi+wj 的二叉树， 其中由字数分别为wi和wj,将wi+wj插入到集合中， 并将wi,wj从集合中删除</p></li>
+<li><p>重复<strong>2</strong>直到集合只有一个权值，</p></li>
+<li><p>从根到叶子节点，路径上左0右1的字符串标记，即得到每一个字符的编码</p></li>
+</ol>
+</blockquote>
+<p><strong>静态哈弗曼编码是最优码，最小冗余码</strong></p>
+<h3 id="2016e5b9b410e69c8813e697a5191050" name="2016e5b9b410e69c8813e697a5191050"><a name="2016e5b9b410e69c8813e697a5191050" class="blank_anchor_name"></a>2016年10月13日19:10:50</h3>
+<p>压缩比：衡量压缩好坏的评判标准  例如 原始编码长为120，压缩后为117，则压缩比为120:117<br>
+冗余量也是一种评判标准</p>
+<p>哈弗曼是从下面开始向上画的树，这个树需要从下向上画，左小又大，向上生长，不能横着画，因为这样不能区分左右子树，写出编码的时候从根往子叶写，</p>
+<h4 id="e8af91e7a081" name="e8af91e7a081"><a name="e8af91e7a081" class="blank_anchor_name"></a>译码</h4>
+<ol>
+<li><p>得到压缩后的字符串</p></li>
+<li><p>得到每一个字符出现的概率，每一个符号，画出原始的哈弗曼编码</p></li>
+<li><p>利用字符串一次在树里面找到一次译码</p></li>
+<li><p>能成功译码的原理是这个是前缀码<span class="mark  ">任意编码都不是其他编码的前缀的任何一部分</span>，只有是前缀码的前提下才能唯一译码</p></li>
+</ol>
+<h2 id="2016e5b9b410e69c8820e697a5205031" name="2016e5b9b410e69c8820e697a5205031"><a name="2016e5b9b410e69c8820e697a5205031" class="blank_anchor_name"></a>2016年10月20日20:50:31</h2>
+<h3 id="fgke7ae97e6b395" name="fgke7ae97e6b395"><a name="fgke7ae97e6b395" class="blank_anchor_name"></a>FGK算法</h3>
+<p>编码过程：</p>
+<blockquote>
+<ol>
+<li><p>初始情况 一个 <span class="mark  ">0-<span class="mark  ">节点，一个为</span>0</span>节点的Huffman树</p></li>
+<li><p>第<span class="mark  ">i</span>步，若 <span class="mark  ">ai</span>当前符号是 <span class="mark  ">k</span> 中的一个，则传 <span class="mark  ">ai</span>的编码，若<span class="mark  ">ai</span>本身为新出现的符号，则传 ==0-==节点的编码以及 <span class="mark  ">ai</span>本身， 并将 <span class="mark  ">0-</span> 节点分裂：其左子树为 ==0-==节点，右子树为 <span class="mark  ">ai</span>， 然后增加相应权值，重新计算树，保持<strong>Silbing</strong>性质。</p></li>
+</ol>
+</blockquote>
+<p>解码过程：</p>
+<blockquote>
+<p>1.依次往后读，看对应树的位置如果是 <span class="mark  ">0</span>节点的位置就表示这是一个新的树的节点，然后获得这个数，写在树枝上，增加权值，也就是在解码的过程中同步生成一个Hufman树，解码完成之后就会有一个和压缩之后的完全相同的Huffman编码</p>
+</blockquote>
+<h3 id="e7ae97e695b0e7bc96e7a081" name="e7ae97e695b0e7bc96e7a081"><a name="e7ae97e695b0e7bc96e7a081" class="blank_anchor_name"></a>算数编码</h3>
+<p>消息用 0到1之间的实数进行编码  <span class="mark  ">[0,1)</span></p>
+<h2 id="2016e5b9b411e69c883e697a5191138" name="2016e5b9b411e69c883e697a5191138"><a name="2016e5b9b411e69c883e697a5191138" class="blank_anchor_name"></a>2016年11月3日19:11:38</h2>
+<h3 id="lze7ae97e6b395" name="lze7ae97e6b395"><a name="lze7ae97e6b395" class="blank_anchor_name"></a>LZ算法</h3>
+<p>例题：编码<br>
+‘’‘<br>
+aa<code>aa bbb cccc ddddd eeeeee fffffffgggggggg</code></p>
+<p>1   a   (0,a)<br>
+2   a(space) (1, space)<br>
+3   b   (0,b)<br>
+4   bb  (3,b)<br>
+5   space   (0, space)<br>
+6   c   (0,c)<br>
+....<br>
+如此继续</p>
+<p>然后定义：<br>
+a   00000<br>
+b   00001<br>
+c   00010</p>
+<p>然后依次替换后面括号内的内容</p>
+<h3 id="lzwe7ae97e6b395" name="lzwe7ae97e6b395"><a name="lzwe7ae97e6b395" class="blank_anchor_name"></a>LZW算法</h3>
+<p>待编码字符串<span class="mark  ">ABBABABAC</span></p>
+<h3 id="e9809ae794a8e7a08120universal20codes" name="e9809ae794a8e7a08120universal20codes"><a name="e9809ae794a8e7a08120universal20codes" class="blank_anchor_name"></a>通用码 universal codes</h3>
+<p>二类通用码：<br>
+Elias codes:</p>
+<blockquote>
+<p>γ code编码方法：<br>
+整数x-&gt;[log2 x]个零，后面跟x的二进制</p>
+</blockquote>
+<h3 id="fibonacci20codes" name="fibonacci20codes"><a name="fibonacci20codes" class="blank_anchor_name"></a>Fibonacci codes</h3>
+<h2 id="2016e5b9b411e69c8810e697a5192731" name="2016e5b9b411e69c8810e697a5192731"><a name="2016e5b9b411e69c8810e697a5192731" class="blank_anchor_name"></a>2016年11月10日19:27:31</h2>
+<h3 id="bstw20e7bc96e7a081" name="bstw20e7bc96e7a081"><a name="bstw20e7bc96e7a081" class="blank_anchor_name"></a>BSTW 编码</h3>
+<p>“move to front</p>
+<ol>
+<li><p>表初始为空</p></li>
+<li><p>诺当前字符ai，在表中那么传 ai的当前位置序号，然后修改表，把ai一道表格第一位， 然后其余字符顺移动</p></li>
+<li><p>若不在表中那么久传位置序号k+1, 假设当前表长为k, 后面跟字符本身编码， 然后修改表， 把ai放到表格的第一位， 其余字符顺次移动</p></li>
+</ol>
+<p>渐进最优，</p>
+<p>第十六周之前<br>
+作业：<br>
+编写一个完整程序： C 或任意语言<br>
+-源文件 压缩 文件 解压 源文件<br>
+其中压缩算法：<br>
+Shannon-Fano coding<br>
+Huffman coding<br>
+Universal codes<br>
+Arithmetic coding<br>
+run-length encoding<br>
+Lempel-Ziv codes<br>
+Algorithm BSTW<br>
+任选一种<br>
+RLE 通用码比较简单<br>
+用的比较多的是哈夫曼</p>
+<p>源文件：文本文件， 内容键盘输入<br>
+要就：简要算法描述，源代码带有注释， 运行结果，截图</p>
+</div>
 
-<script type="text/javascript">
-	var SCREEN_WIDTH = window.innerWidth;//
-	var SCREEN_HEIGHT = window.innerHeight;
-	var container;
-	var particle;//粒子
+</div></div>
+</body></html>
 
-	var camera;
-	var scene;
-	var renderer;
-
-	var starSnow = 1;
-
-	var particles = []; 
-
-	var particleImage = new Image();
-	//THREE.ImageUtils.loadTexture( "img/ParticleSmoke.png" );
-	particleImage.src = 'images/funny.png';
-	
-
-	function init() {
-		//alert("message3");
-		container = document.createElement('div');//container：画布实例;
-		document.body.appendChild(container);
-
-		camera = new THREE.PerspectiveCamera( 60, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
-		camera.position.z = 1000;
-		//camera.position.y = 50;
-
-		scene = new THREE.Scene();
-		scene.add(camera);
-			
-		renderer = new THREE.CanvasRenderer();
-		renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		var material = new THREE.ParticleBasicMaterial( { map: new THREE.Texture(particleImage) } );
-			//alert("message2");
-		for (var i = 0; i < 500; i++) {
-			//alert("message");
-			particle = new Particle3D( material);
-			particle.position.x = Math.random() * 2000-1000;
-			
-			particle.position.z = Math.random() * 2000-1000;
-			particle.position.y = Math.random() * 2000-1000;
-			//particle.position.y = Math.random() * (1600-particle.position.z)-1000;
-			particle.scale.x = particle.scale.y =  1;
-			scene.add( particle );
-			
-			particles.push(particle); 
-		}
-
-		container.appendChild( renderer.domElement );
-
-
-		//document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-		document.addEventListener( 'touchend', onDocumentTouchEnd, false );
-		
-		setInterval( loop, 1000 / 30 );
-		
-	}
-
-	var touchStartX;
-	var touchFlag = 0;//储存当前是否滑动的状态;
-	var touchSensitive = 80;//检测滑动的灵敏度;
-	//var touchStartY;
-	//var touchEndX;
-	//var touchEndY;
-	function onDocumentTouchStart( event ) {
-
-		if ( event.touches.length == 1 ) {
-
-			event.preventDefault();//取消默认关联动作;
-			touchStartX = 0;
-			touchStartX = event.touches[ 0 ].pageX ;
-			//touchStartY = event.touches[ 0 ].pageY ;
-		}
-	}
-
-
-	function onDocumentTouchMove( event ) {
-
-		if ( event.touches.length == 1 ) {
-			event.preventDefault();
-			var direction = event.touches[ 0 ].pageX - touchStartX;
-			if (Math.abs(direction) > touchSensitive) {
-				if (direction>0) {touchFlag = 1;}
-				else if (direction<0) {touchFlag = -1;};
-				//changeAndBack(touchFlag);
-			}	
-		}
-	}
-
-	function onDocumentTouchEnd (event) {
-		// if ( event.touches.length == 0 ) {
-		// 	event.preventDefault();
-		// 	touchEndX = event.touches[ 0 ].pageX ;
-		// 	touchEndY = event.touches[ 0 ].pageY ;
-	
-		// }这里存在问题
-		var direction = event.changedTouches[ 0 ].pageX - touchStartX;
-
-		changeAndBack(touchFlag);
-	}
-
-
-	function changeAndBack (touchFlag) {
-		var speedX = 25*touchFlag;
-		touchFlag = 0;
-		for (var i = 0; i < particles.length; i++) {
-			particles[i].velocity=new THREE.Vector3(speedX,-10,0);
-		}
-		var timeOut = setTimeout(";", 800);
-		clearTimeout(timeOut);
-
-		var clearI = setInterval(function () {
-			if (touchFlag) {
-				clearInterval(clearI);
-				return;
-			};
-			speedX*=0.8;
-
-			if (Math.abs(speedX)<=1.5) {
-				speedX=0;
-				clearInterval(clearI);
-			};
-			
-			for (var i = 0; i < particles.length; i++) {
-				particles[i].velocity=new THREE.Vector3(speedX,-10,0);
-			}
-		},100);
-
-
-	}
-
-
-	function loop() {
-		for(var i = 0; i<particles.length; i++){
-			var particle = particles[i]; 
-			particle.updatePhysics(); 
-
-			with(particle.position)
-			{
-				if((y<-1000)&&starSnow) {y+=2000;}
-
-				if(x>1000) x-=2000; 
-				else if(x<-1000) x+=2000;
-				if(z>1000) z-=2000; 
-				else if(z<-1000) z+=2000;
-			}			
-		}
-
-		camera.lookAt(scene.position); 
-
-		renderer.render( scene, camera );
-	}
-</script>
-</body>
-</html>
