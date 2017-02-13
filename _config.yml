@@ -25,7 +25,7 @@ github_username: Les1ie
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-cayman
+theme: jekyll-theme-architect
 gems:
   - jekyll-feed
 exclude:
