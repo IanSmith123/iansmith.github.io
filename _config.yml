@@ -14,9 +14,9 @@ baseurl: ""                             # for example, '/blog' if your blog host
 RSS: false
 weibo_username:     Les1ie
 zhihu_username:     Les1ie
-github_username:    Les1ie
+github_username:    IanSmith123
 #twitter_username:  Les1ie
-facebook_username:  Les1ie
+#facebook_username:  Les1ie
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -51,7 +51,7 @@ kramdown:
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: huxblog
+duoshuo_username: Les1ie
 # Share component is depend on Comment so we can NOT use share only.
 duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
