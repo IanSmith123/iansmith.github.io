@@ -1,71 +1,883 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/assets/css/style.css?v=" media="screen" type="text/css">
-    <link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css">
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="网络安全没入门的大二码农。">
+    <meta name="keywords"  content="Python, Vim, Kali, sqlmap">
+    <meta name="theme-color" content="#000000">
+    
+    <title>Ian | Les1ie Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <title>Les1ie by </title>
-  </head>
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
 
-  <body>
-    <header>
-      <div class="inner">
-        <a href="http://localhost:4000/">
-          <h1>Les1ie</h1>
-        </a>
-        <h2>Ian 的博客，没事写写学习经历做个备忘吧～～ 喵酱，加油～～～
-</h2>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Les1ie</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/portfolio/">Portfolio</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Les1ie</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">一生想做浪漫极客</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
         
-        
-      </div>
-    </header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-  
-  
-
-
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Feb 14, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2017/02/14/%E6%8A%98%E8%85%BE%E6%8A%98%E8%85%BE.html">好好学习天天向上～～</a>
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/2017/02/09/nextgen-web-pwa/">
+        <h2 class="post-title">
+            下一代 Web 应用模型 —— Progressive Web App
         </h2>
-      </li>
+        
+        <h3 class="post-subtitle">
+            The Next Generation Application Model For The Web - Progressive Web App
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  本文首发于《程序员》，发布于 Hux Blog、前端外刊评论，转载请保留链接 ;)
+
+
+下一代 Web 应用？
+
+近年来，Web 应用在整个软件与互联网行业承载的责任越来越重，软件复杂度和维护成本越来越高，Web 技术，尤其是 Web 客户端技术，迎来了爆发式的发展。
+
+包括但不限于基于 Node.js 的前端工程化方案；诸如 Webpack、Rollup 这样的打包工具；Babel、...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on February 9, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/11/20/sw-101-gdgdf/">
+        <h2 class="post-title">
+            Service Worker 101「GDG DevFest 2016 北京」
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Slides: Service Worker 101, Working Offline and Instant Loading (GDG DevFest 2016 Beijing)
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  下滑这里查看更多内容
+
+
+TLDR; It covers lots of cool stuff about Service Worker!
+
+Watching Fullscreen → 
+
+
     
-  </ul>
+    Scanning on mobile
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
 
+Demo Code → 
+
+
+  Hello World of Service Worker
+  Make your own Offli...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on November 20, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/20/pwa-qcon2016/">
+        <h2 class="post-title">
+            Progressive Web Apps，复兴序章「QCon 上海 2016」
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Slides: Progressive Web Apps, Make Web Great Again. (QCon Shanghai 2016)
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  下滑这里查看更多内容
+
+
+Watching Fullscreen →
+
+
+    
+    Scanning on mobile
+
+
+Catalog
+
+
+  The State Of Web
+  Rethinking Hybridzation
+  PWA 101
+    
+      Definition
+      Add To HomeScreen
+        
+       ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on October 20, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/06/05/pwa-in-my-pov/">
+        <h2 class="post-title">
+            Progressive Web App 之我见
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Slides: Progressive Web App, in my points of view
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  下滑这里查看更多内容
+
+
+Watching Fullscreen →
+
+
+    
+    Scanning on mobile
+
+
+Catalog
+
+
+  WHAT is Progressive Web App?
+  1 - Installability
+  2 - App Shell
+  3 - Offline
+    
+      SERVICE WORKER!
+    
+  
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on June 5, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/01/React-vs-Angular2/">
+        <h2 class="post-title">
+            React vs Angular 2：冰与火之歌「译」
+        </h2>
+        
+        <h3 class="post-subtitle">
+            React versus Angular 2: There Will Be Blood
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  这篇文章转载自我在知乎专栏「前端外刊评论」上发表的文章。
+
+
+Angular 2 已经发布 Beta 版，而且似乎很有信心在 2016 年成为热门框架。是时候进行一场巅峰对决了，我们来看看它如何与 React 这个 2015 年的新宠抗衡。
+
+免责声明：我之前很喜欢使用 Angular 1，不过在 2015 年转到了 React。最近我也在 Pluralsight 上发布了一门关于 R...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on February 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/12/28/css-sucks-2015/">
+        <h2 class="post-title">
+            都 2015 年了，CSS 怎么还是这么糟糕
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Slides: CSS Still Sucks 2015
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  下滑这里查看更多内容
+
+
+Watching Fullscreen →
+
+
+
+你也可以通过扫描二维码在手机上观看
+
+
+这个 Web Slides 开源在我的 Github 上，欢迎你帮助我完善这个展示文稿，你可以给我提 issue，可以 fork &amp; pull request。如果它能帮助到你了，希望你还能不吝啬 star 一下这个项目
+
+Catalog
+
+
+  Document...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on December 28, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/12/15/ios9-safari-web/">
+        <h2 class="post-title">
+            iOS 9，为前端世界都带来了些什么？「译」
+        </h2>
+        
+        <h3 class="post-subtitle">
+            iOS 9, Safari and the Web: 3D Touch, new Responsive Web Design, Native integration and HTML5 APIs
+        </h3>
+        
+        <div class="post-content-preview">
+            2015 年 9 月，Apple 重磅发布了全新的 iPhone 6s/6s Plus、iPad Pro 与全新的操作系统 watchOS 2 与 tvOS 9（是的，这货居然是第 9 版），加上已经发布的 iOS 9，它们都为前端世界带来了哪些变化呢？作为一个 web 开发者，是时候站在我们的角度来说一说了！
+
+
+  注！ 该译文存在大量英文术语，笔者将默认读者知晓 ES6、viewpor...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on December 15, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/10/28/how-designer-learn-fe/">
+        <h2 class="post-title">
+            「知乎」设计师如何学习前端？
+        </h2>
+        
+        <h3 class="post-subtitle">
+            How designers learn front-end development?
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  这篇文章转载自我在知乎上的回答，也被刊登于优秀网页设计等多个网站上 ;)
+
+
+笔者的经历在知乎就可以看到，大学专业是数字媒体艺术，大一实习过动效设计师，大二拿到了人生第一个大公司 offer 是阿里的交互设计，后来转岗到淘宝旅行的前端团队，现在在微信电影票做前端研发。
+
+也是走过了不少野路子，不过还好有小右哥 @尤雨溪 这样艺术/设计转前端的大神在前面做典范，也证明这条路是玩的通的 ;...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on October 28, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/09/22/js-version/">
+        <h2 class="post-title">
+            ES5, ES6, ES2016, ES.Next: JavaScript 的版本是怎么回事？「译」
+        </h2>
+        
+        <h3 class="post-subtitle">
+            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
+        </h3>
+        
+        <div class="post-content-preview">
+            JavaScript 有着很奇怪的命名史。
+
+1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript （当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）
+
+
+歪果仁的笑话怎么一点都不好...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on September 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/07/09/js-module-7day/">
+        <h2 class="post-title">
+            JavaScript 模块化七日谈
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Slides: JavaScript Modularization Journey
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  下滑这里查看更多内容
+
+
+7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近 200 人转发，阅读达到 10w，获得了还不错的评价。
+
+于是，我决定将它重新发到我的博客上，并为它专门制作了适用于 Keynote 展示文稿的新布局。它能自动根据屏幕大小/旋转以一定...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Hux on July 9, 2015
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+    <li class="next">
+        <a href="/page2">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                                <a href="/tags/#知乎" title="知乎" rel="7">
+                                    知乎
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#Android" title="Android" rel="2">
+                                    Android
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#交互设计" title="交互设计" rel="4">
+                                    交互设计
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#阿里巴巴" title="阿里巴巴" rel="3">
+                                    阿里巴巴
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#前端开发" title="前端开发" rel="12">
+                                    前端开发
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#职业病" title="职业病" rel="3">
+                                    职业病
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#生活" title="生活" rel="2">
+                                    生活
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#hUX 随想录" title="hUX 随想录" rel="2">
+                                    hUX 随想录
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#UX Design" title="UX Design" rel="3">
+                                    UX Design
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#OS" title="OS" rel="2">
+                                    OS
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#JavaScript" title="JavaScript" rel="9">
+                                    JavaScript
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#译文" title="译文" rel="2">
+                                    译文
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#PWA" title="PWA" rel="4">
+                                    PWA
+                                </a>
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        
+                            <img src="/img/avatar-Les1ie.jpg" />
+                        
+                        
+                            <p>码力不够。</p>
+                        
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.zhihu.com/people/Les1ie">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="http://weibo.com/Les1ie">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://www.facebook.com/Les1ie">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/Les1ie">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://su.gallery/">Su</a></li>
+                    
+                        <li><a href="http://mida.re/">乱序</a></li>
+                    
+                </ul>
+                
+    		</div>
+        
+	</div>
 </div>
 
-        </section>
 
-        <aside id="sidebar">
-          
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
 
-          
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/Les1ie">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="http://weibo.com/Les1ie">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</p>
-        </aside>
-      </div>
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Les1ie">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Les1ie">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Les1ie 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
     </div>
+</footer>
 
-    
-  </body>
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
 </html>
