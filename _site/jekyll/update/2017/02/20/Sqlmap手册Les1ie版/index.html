@@ -10,7 +10,7 @@
     <meta name="keywords"  content="Python, Vim, Kali, sqlmap">
     <meta name="theme-color" content="#000000">
     
-    <title>Progressive Web App 之我见 - Ian | Les1ie Blog</title>
+    <title>sqlmap使用指南 - 宇宇 | Les1ie's Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2016/06/05/pwa-in-my-pov/">
+    <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/02/20/Sqlmap%E6%89%8B%E5%86%8CLes1ie%E7%89%88/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -160,51 +160,31 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        /*background-image: url('/img/home-bg.jpg')*/
-        height: 500px;
-        overflow: hidden;
+        position: relative;
+        background-image: url('/img/home-bg.jpg')
     }
-    header iframe{
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
-    /* Override Nav Style */
-    
-        .navbar-custom .nav li a,
-        .navbar-custom .nav li a:hover,
-        .navbar-custom .navbar-brand,
-        .navbar-custom .navbar-brand:hover {color:#777;}
-        .navbar-default .navbar-toggle .icon-bar {background-color:#777;}
 
     
 </style>
 <header class="intro-header" >
-    <iframe src="//huangxuan.me/pwa-in-my-pov/"/>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <div class="tags">
-                            
-                            <a class="tag" href="/tags/#前端开发" title="前端开发">前端开发</a>
-                            
-                            <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-                            
-                            <a class="tag" href="/tags/#PWA" title="PWA">PWA</a>
-                            
-                        </div>
-                        <h1>Progressive Web App 之我见</h1>
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
                         
-                        
-                        <h2 class="subheading">Slides: Progressive Web App, in my points of view</h2>
-                        
-                        <span class="meta">Posted by Hux on June 5, 2016</span>
                     </div>
+                    <h1>sqlmap使用指南</h1>
+                    
+                    
+                    <h2 class="subheading">参考了sqlmap的官方文档和网上的一些教程，手打出一篇</h2>
+                    
+                    <span class="meta">Posted by Les1ie on February 20, 2017</span>
                 </div>
             </div>
         </div>
-    </iframe>
+    </div>
 </header>
 
 <!-- Post Content -->
@@ -212,44 +192,77 @@
     <div class="container">
         <div class="row">
 
-            <!-- Post Container -->
-            <div class="post-container
+    <!-- Post Container -->
+            <div class="
                 col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1 ">
+                col-md-10 col-md-offset-1
+                post-container">
 
 				<blockquote>
-  <p>下滑这里查看更多内容</p>
+  <p>First write this article is several months ago, now post it on my blog</p>
 </blockquote>
 
-<h3 id="watching-fullscreen-"><a href="https://huangxuan.me/pwa-in-my-pov/">Watching Fullscreen →</a></h3>
+<h2 id="sqlmap">sqlmap</h2>
+<ol>
+  <li><code class="highlighter-rouge">sqlmap -d </code> is used to connect from your nachine to the database server’s TCP port where the database management system is listening on.</li>
+</ol>
 
-<div class="visible-md visible-lg">
-    <img src="//huangxuan.me/pwa-in-my-pov/attach/qrcode.png" width="350" />
-    <small class="img-hint">Scanning on mobile</small>
-</div>
+<h2 id="five-different-sql-injection-types">five different SQL injection types:</h2>
+<blockquote>
+  <p>Bollean-based blind
+Time-based blind
+Error-based blind
+Union query-based
+Stacked queries</p>
+</blockquote>
 
-<h3 id="catalog">Catalog</h3>
+<h2 id="several">several</h2>
+<ol>
+  <li>sqlmap.py -u “url”</li>
+  <li>sqlmap.py -l burp.log</li>
+  <li>sqlmap.py -m 1.txt this is some url write in a text and sqlmap will test</li>
+  <li>sqlmap.py -r post_data.txt the txt file is data of post</li>
+  <li>sqlmap.py -g “inurl:asp?id” this is google dork</li>
+  <li>sqlmap.py -d “mysql//username:password@123.12.23.23:33306/databasename”</li>
+</ol>
 
-<ul>
-  <li>WHAT is Progressive Web App?</li>
-  <li>1 - Installability</li>
-  <li>2 - App Shell</li>
-  <li>3 - Offline
-    <ul>
-      <li>SERVICE WORKER!</li>
-    </ul>
-  </li>
-  <li>4 - Re-engageable
-    <ul>
-      <li>Push Notification</li>
-    </ul>
-  </li>
-  <li>CONS in my pov</li>
-  <li>PROS in my pov</li>
-  <li>Why Web?</li>
-</ul>
+<h2 id="several-kind-of-requests">several kind of requests</h2>
+<ol>
+  <li>GET sqlmap.py -u “url”</li>
+  <li>POST sqlmap.py -r 1.txt</li>
+  <li>POST FOR FORM sqlmap -u “url” –forms</li>
+  <li>POST sqlmap.py -u “url” –data “age=24”</li>
+  <li>COOKIE sqlmap.py -u “url” –cookie “data” –level 2 NOTE:cookie only work when it is level2</li>
+  <li>User-Agent sqlmap -u “url” –user-agent=”chrome 55 firefox 50” -v 3</li>
+  <li>Referer sqlmap.py -u “url” –referer “http://tieba.baidu.com” -v 3</li>
+  <li>Dealy sqlmap.py -u “url” –dealy 10</li>
+  <li>Timeout sqlmap.py -u “url” –timeout 10   NOTE:10seconds show timeout, default is 30s</li>
+  <li>Retry sqlmap.py -u “url” —retries 10</li>
+  <li>Use regex <code class="highlighter-rouge">sqlmap.py -l burp.log -scope="(www)?\.target\.\(com|net|org|cn)"</code></li>
+  <li>Avoid too much wrong requests sqlmap.py -u “url” –safe-url “url” get safe url in some time</li>
+  <li>Avoid too much wrong requests sqlmap.py -u “url” –safe-freq “url” get safe url every test</li>
+  <li>Pamera sqlmap.py -u “http://xxxx.com/id*/45” or sqlmap.py -u “url” -p “id”</li>
+  <li>Version of database sqlmap.py -u “url” -b</li>
+  <li>sqlmap.py -u “url” –banner</li>
+  <li>sqlmap.py -u “url” –current-db</li>
+  <li>sqlmap.py -u “url” –current-user</li>
+  <li>sqlmap.py -u “url” –users</li>
+  <li>sqlmap.py -u “url” –dbs</li>
+  <li>sqlmap.py -u “url” -tabels -D “databasename”</li>
+  <li>sqlmap.py -u “url” –columns -T “tablesname” -D “databasename”</li>
+  <li>sqlmap.py -u “url” –tables -D “databasename” –count</li>
+  <li>sqlmap.py -u “url” –dump -C “passwd, username” -T “tablename” -D “databasename”</li>
+  <li>sqlmap.py -u “url” –start 1 –stop 3 -T “tablename” -D “databasename”</li>
+  <li>sqlmap.py -u “url” –first 1 –last 5</li>
+  <li>Get all the database sqlmap.py -u “url” –dump-all</li>
+  <li>Get all the database sqlmap.py -u “url” –dump-all –exclude-sysdbs Note:only get user database, bot system dbs</li>
+  <li>sqlmap.py -u “url” –sql-shell</li>
+  <li>sqlmap.py -u “url” –sql-query “select * from admin”</li>
+  <li>sqlmap.py -u “url” –search -D test NOTE:to search database name or -T -C</li>
+  <li>sqlmap.py -u “url” –schema NOTE:to show the constract of database</li>
+  <li>sqlmap.py -u “url” –exclude-sysdbs avoid system dbs</li>
+</ol>
 
-<h3 id="power-by-yanshuoio演说io">Power by <a href="https://yanshuo.io">Yanshuo.io（演说.io）</a></h3>
 
 
                 <hr style="visibility: hidden;">
@@ -258,26 +271,20 @@
                 <!-- 多说 Share start -->
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2016/06/05/pwa-in-my-pov" data-title="Progressive Web App 之我见"
+                    data-thread-key="/jekyll/update/2017/02/20/Sqlmap手册Les1ie版"
+                    data-title="sqlmap使用指南"
+                    data-url="http://localhost:4000/jekyll/update/2017/02/20/Sqlmap%E6%89%8B%E5%86%8CLes1ie%E7%89%88/"
                     data-images="http://localhost:4000/img/home-bg.jpg"
                     data-content="
-  下滑这里查看更多内容
+  First write this article is several months ago, now post it on my blog
 
 
-Watching Fullscreen →
-
-
-    
-    Scanning on mobile
-
-
-Catalog... | Hux Blog，@Hux黄玄 的个人博客"
-                    data-url="http://localhost:4000/2016/06/05/pwa-in-my-pov/">
+s... | 宇宇 | Les1ie's Blog " >
                     <div class="ds-share-inline">
                       <style> 
                         .ds-share-icons-16 {display:none;} 
                       </style>
-                      <ul  class="ds-share-icons-16">
+                      <ul class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
                         <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
                         <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
@@ -288,26 +295,19 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
                     </div>
                 <hr>
                 </div>
-                <!-- 多少 Share end-->
+                <!-- 多说 Share end-->
                 
 
 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/02/01/React-vs-Angular2/" data-toggle="tooltip" data-placement="top" title="React vs Angular 2：冰与火之歌「译」">
+                        <a href="/jekyll/update/2017/02/20/%E6%90%AC%E8%BF%90%E4%BA%86hux%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%9D%A5%E5%81%9A%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2,%E5%9C%A8%E6%AD%A4%E8%B0%A2%E8%BF%87/" data-toggle="tooltip" data-placement="top" title=" 搬运搞了个新的博客，以后在这里写笔记啦">
                         Previous<br>
-                        <span>React vs Angular 2：冰与火之歌「译」</span>
+                        <span> 搬运搞了个新的博客，以后在这里写笔记啦</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2016/10/20/pwa-qcon2016/" data-toggle="tooltip" data-placement="top" title="Progressive Web Apps，复兴序章「QCon 上海 2016」">
-                        Next<br>
-                        <span>Progressive Web Apps，复兴序章「QCon 上海 2016」</span>
-                        </a>
-                    </li>
                     
                 </ul>
 
@@ -316,9 +316,9 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2016/06/05/pwa-in-my-pov"
-                        data-title="Progressive Web App 之我见"
-                        data-url="http://localhost:4000/2016/06/05/pwa-in-my-pov/" >
+                        data-thread-key="/jekyll/update/2017/02/20/Sqlmap手册Les1ie版"
+                        data-title="sqlmap使用指南"
+                        data-url="http://localhost:4000/jekyll/update/2017/02/20/Sqlmap%E6%89%8B%E5%86%8CLes1ie%E7%89%88/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -326,12 +326,16 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
 
                 
 
-            </div>
+            </div>  
 
-            <!-- Sidebar Container -->
-            <div class="sidebar-container
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+            <div class="
                 col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1 ">
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
                 <!-- Featured Tags -->
                 
@@ -339,72 +343,18 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                                <a href="/tags/#前端开发" title="前端开发" rel="5">
-                                    前端开发
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#JavaScript" title="JavaScript" rel="5">
-                                    JavaScript
-                                </a>
-                            
-                        
-                            
-                        
-                            
-                                <a href="/tags/#PWA" title="PWA" rel="4">
-                                    PWA
-                                </a>
-                            
-                        
-                            
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
                 <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="http://su.gallery/">Su</a></li>
-                    
-                        <li><a href="http://mida.re/">乱序</a></li>
-                    
-                </ul>
                 
             </div>
         </div>
     </div>
 </article>
 
-<!-- resize header to fullscreen keynotes -->
-<script>
-    var $header = document.getElementsByTagName("header")[0];
-    function resize(){
-        /*
-         * leave 85px to both
-         * - told/imply users that there has more content below
-         * - let user can scroll in mobile device, seeing the keynote-view is unscrollable
-         */
-        $header.style.height = (window.innerHeight-85) + 'px';
-    }
-    document.addEventListener('DOMContentLoaded', function(){
-        resize();
-    })
-    window.addEventListener('load', function(){
-        resize();
-    })
-    window.addEventListener('resize', function(){
-        resize();
-    })
-    resize();
-</script>
 
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -466,7 +416,6 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
 </style>
 
 
-
     <!-- Footer -->
 <footer>
     <div class="container">
@@ -479,7 +428,7 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
                     
                     <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/Les1ie">
+                        <a target="_blank" href="https://www.zhihu.com/people/iansmith">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa  fa-stack-1x fa-inverse">知</i>
@@ -487,15 +436,6 @@ Catalog... | Hux Blog，@Hux黄玄 的个人博客"
                         </a>
                     </li>
                     
-                    
-                    <li>
-                        <a target="_blank" href="http://weibo.com/Les1ie">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
                     
 
 

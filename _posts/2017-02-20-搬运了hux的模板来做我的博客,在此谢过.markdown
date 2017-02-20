@@ -1,0 +1,11 @@
+---
+layout:		 post
+title:		" 搬运搞了个新的博客，以后在这里写笔记啦"
+subtitle:	"业精于勤荒于嬉，行成于思毁于随。"
+date:		2017-02-20 23:01:12  +0800
+author:		"Les1ie"
+categories: jekyll update
+---
+花了接近一天时间搬运过来的东西，原作者的博客在 https://huangxuan.me, 在此谢过。
+2017年02月20日23:05:15
+喵，晚安

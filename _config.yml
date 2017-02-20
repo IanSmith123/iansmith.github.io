@@ -1,6 +1,6 @@
 # Site settings
 title: Les1ie
-SEOTitle: Ian | Les1ie Blog
+SEOTitle: 宇宇 | Les1ie's Blog
 header-img: img/home-bg.jpg
 email: iansmith@qq.com
 description: "网络安全没入门的大二码农。"
@@ -12,8 +12,8 @@ baseurl: ""                             # for example, '/blog' if your blog host
 
 # SNS settings
 RSS: false
-weibo_username:     Les1ie
-zhihu_username:     Les1ie
+#weibo_username:     Les1ie
+zhihu_username:     iansmith
 github_username:    IanSmith123
 #twitter_username:  Les1ie
 #facebook_username:  Les1ie
@@ -73,7 +73,7 @@ duoshuo_share: true                     # set to false if you want to use Commen
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "码力不够。"
+sidebar-about-description: "路遥知码力。"
 sidebar-avatar: /img/avatar-Les1ie.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -91,15 +91,12 @@ service-worker: true
 
 
 # Friends
-friends: [
-    {
-        title: "Su",
-        href: "http://su.gallery/"
-    },{
-        title: "乱序",
-        href: "http://mida.re/"
-    }
-]
+#friends: [
+    #    {
+    #    title: "乱序",
+    #    href: "http://mida.re/"
+    #  }
+    #]
 
 gems: [jekyll-paginate]
 highliter: rouge
