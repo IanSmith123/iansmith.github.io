@@ -5,9 +5,45 @@
     <description>网络安全没入门的大二码农。</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 Feb 2017 00:33:49 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Feb 2017 00:33:49 +0800</lastBuildDate>
+    <pubDate>Tue, 21 Feb 2017 15:55:00 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Feb 2017 15:55:00 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>Nmap 手册总结 -- 未完成</title>
+        <description>&lt;h2 id=&quot;nmap使用手册&quot;&gt;Nmap使用手册&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;nmap -A -T4 google.com    A is system and version, T4 will decrease the t    ime of scan&lt;/li&gt;
+  &lt;li&gt;nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址&lt;/li&gt;
+  &lt;li&gt;nmap 192.168.0-255,1-254 略过255这种广播地址&lt;/li&gt;
+  &lt;li&gt;nmap1. nmap -A -T4 google.com    A is system and version, T4 will decreas    e the time of scan
+    &lt;h2 id=&quot;主机发现&quot;&gt;主机发现&lt;/h2&gt;
+  &lt;/li&gt;
+  &lt;li&gt;nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址&lt;/li&gt;
+  &lt;li&gt;nmap 192.168.0-255,1-254 略过255这种广播地址&lt;/li&gt;
+  &lt;li&gt;nmap ab.com bc.com dd.com 扫描多个地址&lt;/li&gt;
+  &lt;li&gt;nmap -sS -PS80 -iR 0 -p 80  -iR在整个互联网上随机选择目标进行扫描&lt;/li&gt;
+  &lt;li&gt;nmap -sP 进行ping扫描，扫描网段内存活的主机&lt;/li&gt;
+  &lt;li&gt;nmap -P0 跳过发现阶段，对每一台主机扫描&lt;/li&gt;
+  &lt;li&gt;nmap -PS22,3389,1080 x.x.x.x 扫描指定端口，发送ack和syn的报文过防火墙&lt;/li&gt;
+  &lt;li&gt;nmap -PU xx.com 发出udp的包来发现过滤所有tcp端口的设备，&lt;/li&gt;
+  &lt;li&gt;nmap -PR 192.168.1.1-100 扫描局域网，速度快可靠&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;还有很多没写挖坑&quot;&gt;还有很多没写…挖坑.&lt;/h2&gt;
+&lt;p&gt;2017年02月21日15:35:38&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 21 Feb 2017 14:38:54 +0800</pubDate>
+        <link>http://localhost:4000/jekyll/update/2017/02/21/Nmap%E6%89%8B%E5%86%8C/</link>
+        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2017/02/21/Nmap%E6%89%8B%E5%86%8C/</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
     
       <item>
         <title>sqlmap使用指南</title>

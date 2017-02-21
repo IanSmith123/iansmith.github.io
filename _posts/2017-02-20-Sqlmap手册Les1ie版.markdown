@@ -5,6 +5,7 @@ subtitle:	"参考了sqlmap的官方文档和网上的一些教程，手打出一
 date:		2017-02-20 23:14:12  +0800
 author:		"Les1ie"
 categories: jekyll update
+header-img: "img/sqlmap-manul-pic.png"
 ---
 > First write this article is several months ago, now post it on my blog
 

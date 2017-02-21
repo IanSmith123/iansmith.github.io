@@ -10,7 +10,7 @@
     <meta name="keywords"  content="Python, Vim, Kali, sqlmap">
     <meta name="theme-color" content="#000000">
     
-    <title>宇宇 | Les1ie's Blog</title>
+    <title>Nmap 手册总结 -- 未完成 - 宇宇 | Les1ie's Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/">
+    <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/02/21/Nmap%E6%89%8B%E5%86%8C/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -153,219 +153,229 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/Nmap-manul-pic.png" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/Nmap-manul-pic.png')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Les1ie</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">一生想做浪漫极客</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>Nmap 手册总结 -- 未完成</h1>
+                    
+                    
+                    <h2 class="subheading">端口扫描工具</h2>
+                    
+                    <span class="meta">Posted by Les1ie on February 21, 2017</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h2 id="nmap使用手册">Nmap使用手册</h2>
+<ol>
+  <li>nmap -A -T4 google.com    A is system and version, T4 will decrease the t    ime of scan</li>
+  <li>nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址</li>
+  <li>nmap 192.168.0-255,1-254 略过255这种广播地址</li>
+  <li>nmap1. nmap -A -T4 google.com    A is system and version, T4 will decreas    e the time of scan
+    <h2 id="主机发现">主机发现</h2>
+  </li>
+  <li>nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址</li>
+  <li>nmap 192.168.0-255,1-254 略过255这种广播地址</li>
+  <li>nmap ab.com bc.com dd.com 扫描多个地址</li>
+  <li>nmap -sS -PS80 -iR 0 -p 80  -iR在整个互联网上随机选择目标进行扫描</li>
+  <li>nmap -sP 进行ping扫描，扫描网段内存活的主机</li>
+  <li>nmap -P0 跳过发现阶段，对每一台主机扫描</li>
+  <li>nmap -PS22,3389,1080 x.x.x.x 扫描指定端口，发送ack和syn的报文过防火墙</li>
+  <li>nmap -PU xx.com 发出udp的包来发现过滤所有tcp端口的设备，</li>
+  <li>nmap -PR 192.168.1.1-100 扫描局域网，速度快可靠</li>
+</ol>
+
+<h2 id="还有很多没写挖坑">还有很多没写…挖坑.</h2>
+<p>2017年02月21日15:35:38</p>
+
+
+
+                <hr style="visibility: hidden;">
+
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="/jekyll/update/2017/02/21/Nmap手册"
+                    data-title="Nmap 手册总结 -- 未完成"
+                    data-url="http://localhost:4000/jekyll/update/2017/02/21/Nmap%E6%89%8B%E5%86%8C/"
+                    data-images="http://localhost:4000/img/Nmap-manul-pic.png"
+                    data-content="Nmap使用手册
+
+  nmap -A -T4 google.com    A is system and version, T4 will decrea... | 宇宇 | Les1ie's Blog " >
+                    <div class="ds-share-inline">
+                      <style> 
+                        .ds-share-icons-16 {display:none;} 
+                      </style>
+                      <ul class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/jekyll/update/2017/02/20/Sqlmap%E6%89%8B%E5%86%8CLes1ie%E7%89%88/" data-toggle="tooltip" data-placement="top" title="sqlmap使用指南">
+                        Previous<br>
+                        <span>sqlmap使用指南</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/jekyll/update/2017/02/21/Nmap手册"
+                        data-title="Nmap 手册总结 -- 未完成"
+                        data-url="http://localhost:4000/jekyll/update/2017/02/21/Nmap%E6%89%8B%E5%86%8C/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>  
+
+    <!-- Side Catalog Container -->
         
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-<div class="post-preview">
-    <a href="/jekyll/update/2017/02/21/Nmap%E6%89%8B%E5%86%8C/">
-        <h2 class="post-title">
-            Nmap 手册总结 -- 未完成
-        </h2>
-        
-        <h3 class="post-subtitle">
-            端口扫描工具
-        </h3>
-        
-        <div class="post-content-preview">
-            Nmap使用手册
-
-  nmap -A -T4 google.com    A is system and version, T4 will decrease the t    ime of scan
-  nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址
-  nmap 192.168.0-255,1-254 略过255这种广播地址
-  nm...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Les1ie on February 21, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/jekyll/update/2017/02/20/Sqlmap%E6%89%8B%E5%86%8CLes1ie%E7%89%88/">
-        <h2 class="post-title">
-            sqlmap使用指南
-        </h2>
-        
-        <h3 class="post-subtitle">
-            参考了sqlmap的官方文档和网上的一些教程，手打出一篇
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  First write this article is several months ago, now post it on my blog
-
-
-sqlmap
-
-  sqlmap -d  is used to connect from your nachine to the database server’s TCP port where the database management...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Les1ie on February 20, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/jekyll/update/2017/02/20/%E6%90%AC%E8%BF%90%E4%BA%86hux%E7%9A%84%E6%A8%A1%E6%9D%BF%E6%9D%A5%E5%81%9A%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2,%E5%9C%A8%E6%AD%A4%E8%B0%A2%E8%BF%87/">
-        <h2 class="post-title">
-             搬运搞了个新的博客，以后在这里写笔记啦
-        </h2>
-        
-        <h3 class="post-subtitle">
-            业精于勤荒于嬉，行成于思毁于随。
-        </h3>
-        
-        <div class="post-content-preview">
-            花了接近一天时间搬运过来的东西，原作者的博客在 https://huangxuan.me, 在此谢过。
-2017年02月20日23:05:15
-喵，晚安
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Les1ie on February 20, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/jekyll/update/2017/02/14/Learn-C/">
-        <h2 class="post-title">
-            C# ～～
-        </h2>
-        
-        <div class="post-content-preview">
-            C# 的窗体有几个东西，比如 RadioButton, Label, ComboBox,Button..
-2017年2月14日15:07:30
-拿快递去….
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Les1ie on February 14, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/jekyll/update/2017/02/14/%E6%8A%98%E8%85%BE%E6%8A%98%E8%85%BE/">
-        <h2 class="post-title">
-            好好学习天天向上～～
-        </h2>
-        
-        <div class="post-content-preview">
-            2017年02月14日01:10:16
-折腾好久终于换了一个主题了，准备休息，明天开干，学习笔记就记在这里了，喵喵～～
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Les1ie on February 14, 2017
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-
-    		</div>
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                    </div>
+        				
+        			</div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-Les1ie.jpg" />
-                        
-                        
-                            <p>路遥知码力。</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/iansmith">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/IanSmith123">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
                 <!-- Friends Blog -->
                 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'Les1ie';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
 
     <!-- Footer -->
