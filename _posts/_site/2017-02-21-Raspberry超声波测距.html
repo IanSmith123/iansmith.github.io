@@ -1,0 +1,54 @@
+<h2 id="0x00">0x00</h2>
+<p>因为在做的项目的缘故，接触到树莓派的开发，这里使用了HC-SR04超声波模块。</p>
+
+<h2 id="0x01">0x01</h2>
+<p>树莓派是使用的3B，使用了4个引脚，一个GND一个Vcc，两个GPIO。分别使用的是02,39,03， 05这几个pin. 
+<img src="../img/Raspberry-GPIO.png" alt="" />
+看图的时候是把网线和usb插口靠近自己这种摆放方式来编号每个pin的。</p>
+
+<h2 id="0x02-使用过程">0x02 使用过程</h2>
+<p>源代码如下，使用 filezilla传到树莓派里面，ssh登录进去运行即可。</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ssh root@192.168.8.246
+</code></pre>
+</div>
+<p>代码如下</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="kn">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">checkdist</span><span class="p">():</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">HIGH</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.000015</span><span class="p">)</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">GPIO</span><span class="o">.</span><span class="nb">input</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">GPIO</span><span class="o">.</span><span class="nb">input</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">)</span><span class="o">*</span><span class="mi">340</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">'Distance: </span><span class="si">%0.2</span><span class="s">f m'</span> <span class="o">%</span><span class="n">checkdist</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        
+<span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">"user quit"</span>
+        
+</code></pre>
+</div>
+<p>这个代码网上很多，我是照着敲下来的，跑起来的时候成就感还是满满的。</p>
+
+<h2 id="0x03-后续">0x03 后续</h2>
+<p>之后要修改这个代码，项目里面可不能这样写╭(╯^╰)╮</p>
+
+<h2 id="2017年02月21日224219">2017年02月21日22:42:19</h2>

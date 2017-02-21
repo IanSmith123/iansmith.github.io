@@ -1,0 +1,22 @@
+<h2 id="nmap使用手册">Nmap使用手册</h2>
+<ol>
+  <li>nmap -A -T4 google.com    A is system and version, T4 will decrease the t    ime of scan</li>
+  <li>nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址</li>
+  <li>nmap 192.168.0-255,1-254 略过255这种广播地址</li>
+  <li>nmap1. nmap -A -T4 google.com    A is system and version, T4 will decreas    e the time of scan
+    <h2 id="主机发现">主机发现</h2>
+  </li>
+  <li>nmap 192.168.2.1/24 nmap会扫描具有相同比特的地址，只是说扫描1-255的地址</li>
+  <li>nmap 192.168.0-255,1-254 略过255这种广播地址</li>
+  <li>nmap ab.com bc.com dd.com 扫描多个地址</li>
+  <li>nmap -sS -PS80 -iR 0 -p 80  -iR在整个互联网上随机选择目标进行扫描</li>
+  <li>nmap -sP 进行ping扫描，扫描网段内存活的主机</li>
+  <li>nmap -P0 跳过发现阶段，对每一台主机扫描</li>
+  <li>nmap -PS22,3389,1080 x.x.x.x 扫描指定端口，发送ack和syn的报文过防火墙</li>
+  <li>nmap -PU xx.com 发出udp的包来发现过滤所有tcp端口的设备，</li>
+  <li>nmap -PR 192.168.1.1-100 扫描局域网，速度快可靠</li>
+</ol>
+
+<h2 id="还有很多没写挖坑">还有很多没写…挖坑.</h2>
+<p>2017年02月21日15:35:38</p>
+

