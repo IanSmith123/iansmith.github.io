@@ -1,6 +1,6 @@
 ---
 layout:		post
-title:	"树莓派应用只超声波测距"
+title:	"树莓派应用之超声波测距"
 date:	2017-02-21 22:17:07 +0800
 categories: jekyll update
 subtitle:	"--HC-SR04模块的使用"
