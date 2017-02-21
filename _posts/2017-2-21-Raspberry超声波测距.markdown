@@ -16,7 +16,7 @@ header-mask: 0.3
 ![](/img/Raspberry-GPIO.png)
 看图的时候是把网线和usb插口靠近自己这种摆放方式来编号每个pin的。
 下面是测距的模块
-![](img/Raspberry-HC-SR04-front.jpg)
+![](/img/Raspberry-HC-SR04-front.jpg)
 
 
 
