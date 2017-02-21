@@ -15,6 +15,10 @@ header-mask: 0.3
 树莓派是使用的3B，使用了4个引脚，一个GND一个Vcc，两个GPIO。分别使用的是02,39,03， 05这几个pin. 
 ![](/img/Raspberry-GPIO.png)
 看图的时候是把网线和usb插口靠近自己这种摆放方式来编号每个pin的。
+下面是测距的模块
+![](img/Raspberry-HC-SR04-front.jpg)
+
+
 
 ## 0x02 使用过程
 源代码如下，使用 filezilla传到树莓派里面，ssh登录进去运行即可。
