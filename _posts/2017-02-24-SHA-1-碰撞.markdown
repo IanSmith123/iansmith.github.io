@@ -16,7 +16,7 @@ header-mask: 0.3
 但是 土豪 Google动用了一大堆CPU以及GPU来爆破，于是有了本文。
 
 ## 0x01
-先看图吧:
+先看图吧，我把源文件下载下来做的测试:
 
 ![](/img/SHA-1/SHA-1-cli-pic.png)
  ```bash
@@ -34,26 +34,30 @@ ee4aa52b139d925f8d8884402b0a750c *shattered-1.pdf
 5bd9d8cabc46041579a311230539b8d1 *shattered-2.pdf
 ```
 这是两个不同的pdf, 打开了是这样的:
-![/img/SHA-1/SHA-1-shattered-1-pic.png]
+![](/img/SHA-1/SHA-1-shattered-1-pic.png)
 
-![/img/SHA-1/SHA-1-shattered-2-pic.png]
+![](/img/SHA-1/SHA-1-shattered-2-pic.png)
+
 明显的颜色不同，计算的 MD5也不同，但是 SHA-1是一样的。
 下载地址 
+
 [shatteed-1.pdf](/img/SHA-1/shattered-1.pdf)
+
 [shatteed-2.pdf](/img/SHA-1/shattered-2.pdf)
 
 ## 0x02
-下载文件的时候，比较重要的时候我会算下MD5看看和源提供的是否一样，如果伪造了文件然后让MD5或者SHA1一样了。后果你懂的。
+下载文件的时候，比较重要的我会算下MD5看看和源提供的是否一样，如果伪造了文件然后让MD5或者SHA1一样了，后果就严重了。
 有[bettercap](https://github.com/evilsocket/bettercap)这种东西，内网劫持你下载的文件，下载好了，就算你算了哈希是一样的，但是打开了却是个木马。
 
 ## 0x03
 突然想到了去年的做到过的一道网络流量分析的题。
 > 大意是受害者在7-zip的官网下载了一个最新版本的7-zip.exe, 然后安装好了，结果中了病毒。
 > **Posion Ivy** 加密发了数据包(flag), 最后是同组的一个 dalao做出来了。
-截图是来自当时讲课的老师的 PPT里面的，我的本地的pcap包删掉了，找了下没找到，找到了这个ppt.
-[下载的流量](/img/SHA-1/SHA-1-pcap-pic.png)
 
-[算的sha1的值](/img/SHA-1/SHA-1-7z-pic.png)
+截图是来自当时讲课的老师的 PPT里面的，我的本地的pcap包删掉了，找了下没找到，找到了这个ppt.
+![下载的流量](/img/SHA-1/SHA-1-pcap-pic.png)
+
+![算的sha1的值](/img/SHA-1/SHA-1-7z-pic.png)
 当时怎么也想不通他明明是从官网下的东西，怎么会中病毒了？
 现在知道可能是遇到了内网攻击,劫持流量到攻击机，然后附加了病毒到他下载的文件里面。
 
