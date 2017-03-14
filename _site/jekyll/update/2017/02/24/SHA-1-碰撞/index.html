@@ -10,7 +10,7 @@
     <meta name="keywords"  content="Python, Vim, Kali, sqlmap">
     <meta name="theme-color" content="#000000">
     
-    <title>好好学习天天向上～～ - 宇宇 | Les1ie's Blog</title>
+    <title>SHA-1 碰撞以及随想 - 宇宇 | Les1ie's Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/02/14/%E6%8A%98%E8%85%BE%E6%8A%98%E8%85%BE/">
+    <link rel="canonical" href="http://localhost:4000/jekyll/update/2017/02/24/SHA-1-%E7%A2%B0%E6%92%9E/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,15 +155,22 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+<!-- <img src="/img/SHA-1/SHA-1-bg-pic.png" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('/img/SHA-1/SHA-1-bg-pic.png')
     }
 
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
     
 </style>
 <header class="intro-header" >
@@ -175,12 +182,12 @@
                     <div class="tags">
                         
                     </div>
-                    <h1>好好学习天天向上～～</h1>
+                    <h1>SHA-1 碰撞以及随想</h1>
                     
                     
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">由新闻想到的一些东西。</h2>
                     
-                    <span class="meta">Posted by Les1ie on February 14, 2017</span>
+                    <span class="meta">Posted by Les1ie on February 24, 2017</span>
                 </div>
             </div>
         </div>
@@ -198,9 +205,65 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h2 id="2017年02月14日011016">2017年02月14日01:10:16</h2>
-<p>折腾好久终于换了一个主题了，准备休息，明天开干，学习笔记就记在这里了，喵喵～～</p>
+				<h2 id="0x00">0x00</h2>
+<p>刚刚看到的东西， Google 把SHA-1 爆破了。
+<img src="/img/SHA-1/SHA-1-google-web.png" alt="" />
+<img src="/img/SHA-1/SHA-1-web-pic.png" alt="" />
+这个就尴尬了…一直觉得这种东西是个很复杂的东西。
+但是 土豪 Google动用了一大堆CPU以及GPU来爆破，于是有了本文。</p>
 
+<h2 id="0x01">0x01</h2>
+<p>先看图吧，我把源文件下载下来做的测试:</p>
+
+<p><img src="/img/SHA-1/SHA-1-cli-pic.png" alt="" /></p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls
+shattered-1.pdf  shattered-2.pdf
+</code></pre>
+</div>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sha1sum.exe sha<span class="k">*</span>
+38762cf7f55934b34d179ae6a4c80cadccbb7f0a <span class="k">*</span>shattered-1.pdf
+38762cf7f55934b34d179ae6a4c80cadccbb7f0a <span class="k">*</span>shattered-2.pdf
+</code></pre>
+</div>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>md5sum.exe sha<span class="k">*</span>
+ee4aa52b139d925f8d8884402b0a750c <span class="k">*</span>shattered-1.pdf
+5bd9d8cabc46041579a311230539b8d1 <span class="k">*</span>shattered-2.pdf
+</code></pre>
+</div>
+<p>这是两个不同的pdf, 打开了是这样的:
+<img src="/img/SHA-1/SHA-1-shattered-1-pic.png" alt="" /></p>
+
+<p><img src="/img/SHA-1/SHA-1-shattered-2-pic.png" alt="" /></p>
+
+<p>明显的颜色不同，计算的 MD5也不同，但是 SHA-1是一样的。
+下载地址</p>
+
+<p><a href="/img/SHA-1/shattered-1.pdf">shatteed-1.pdf</a></p>
+
+<p><a href="/img/SHA-1/shattered-2.pdf">shatteed-2.pdf</a></p>
+
+<h2 id="0x02">0x02</h2>
+<p>下载文件的时候，比较重要的我会算下MD5看看和源提供的是否一样，如果伪造了文件然后让MD5或者SHA1一样了，后果就严重了。
+有<a href="https://github.com/evilsocket/bettercap">bettercap</a>这种东西，内网劫持你下载的文件，下载好了，就算你算了哈希是一样的，但是打开了却是个木马。</p>
+
+<h2 id="0x03">0x03</h2>
+<p>突然想到了去年的做到过的一道网络流量分析的题。</p>
+<blockquote>
+  <p>大意是受害者在7-zip的官网下载了一个最新版本的7-zip.exe, 然后安装好了，结果中了病毒。
+<strong>Posion Ivy</strong> 加密发了数据包(flag), 最后是同组的一个 dalao做出来了。</p>
+</blockquote>
+
+<p>截图是来自当时讲课的老师的 PPT里面的，我的本地的pcap包删掉了，找了下没找到，找到了这个ppt.
+<img src="/img/SHA-1/SHA-1-pcap-pic.png" alt="下载的流量" /></p>
+
+<p><img src="/img/SHA-1/SHA-1-7z-pic.png" alt="算的sha1的值" />
+当时怎么也想不通他明明是从官网下的东西，怎么会中病毒了？
+现在知道可能是遇到了内网攻击,劫持流量到攻击机，然后附加了病毒到他下载的文件里面。</p>
+
+<h2 id="0x04">0x04</h2>
+<p>2017年2月24日14:52:27
+在Win10 上写的这篇博客，预览需要传到github去.
+╭(╯^╰)╮</p>
 
 
                 <hr style="visibility: hidden;">
@@ -209,14 +272,16 @@
                 <!-- 多说 Share start -->
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/jekyll/update/2017/02/14/折腾折腾"
-                    data-title="好好学习天天向上～～"
-                    data-url="http://localhost:4000/jekyll/update/2017/02/14/%E6%8A%98%E8%85%BE%E6%8A%98%E8%85%BE/"
-                    data-images="http://localhost:4000/img/home-bg.jpg"
-                    data-content="2017年02月14日01:10:16
-折腾好久终于换了一个主题了，准备休息，明天开干，学习笔记就记在这里了，喵喵～～
+                    data-thread-key="/jekyll/update/2017/02/24/SHA-1-碰撞"
+                    data-title="SHA-1 碰撞以及随想"
+                    data-url="http://localhost:4000/jekyll/update/2017/02/24/SHA-1-%E7%A2%B0%E6%92%9E/"
+                    data-images="http://localhost:4000/img/SHA-1/SHA-1-bg-pic.png"
+                    data-content="0x00
+刚刚看到的东西， Google 把SHA-1 爆破了。
 
- | 宇宇 | Les1ie's Blog " >
+
+这个就尴尬了…一直觉得这种东西是个很复杂的东西。
+但是 土豪 Google动用了一大... | 宇宇 | Les1ie's Blog " >
                     <div class="ds-share-inline">
                       <style> 
                         .ds-share-icons-16 {display:none;} 
@@ -238,13 +303,13 @@
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/jekyll/update/2017/02/14/Learn-C/" data-toggle="tooltip" data-placement="top" title="C# ～～">
-                        Next<br>
-                        <span>C# ～～</span>
+                    <li class="previous">
+                        <a href="/jekyll/update/2017/02/21/Raspberry%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%B5%8B%E8%B7%9D/" data-toggle="tooltip" data-placement="top" title="树莓派应用之超声波测距">
+                        Previous<br>
+                        <span>树莓派应用之超声波测距</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
@@ -253,9 +318,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/jekyll/update/2017/02/14/折腾折腾"
-                        data-title="好好学习天天向上～～"
-                        data-url="http://localhost:4000/jekyll/update/2017/02/14/%E6%8A%98%E8%85%BE%E6%8A%98%E8%85%BE/" >
+                        data-thread-key="/jekyll/update/2017/02/24/SHA-1-碰撞"
+                        data-title="SHA-1 碰撞以及随想"
+                        data-url="http://localhost:4000/jekyll/update/2017/02/24/SHA-1-%E7%A2%B0%E6%92%9E/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -487,6 +552,20 @@
 
 
 <!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '63e20362d0a853112b4d8fd7c462d956';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
 
 
