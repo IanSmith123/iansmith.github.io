@@ -1,9 +1,0 @@
---- layout: post
-title: "SHA-1 碰撞以及随想" 
-date: 2017-2-24 14:11:48 +0800 
-categories: jekyll update 
-subtitle: "由新闻想到的一些东西。" 
-author: "Les1ie" 
-header-img: "img/SHA-1/SHA-1-bg-pic.png" 
-header-mask: 0.3 
----
