@@ -98,5 +98,3 @@ service-worker: true
     #  }
     #]
 
-gems: [jekyll-paginate]
-highliter: rouge
