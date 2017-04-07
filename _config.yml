@@ -91,10 +91,10 @@ service-worker: true
 
 
 # Friends
-#friends: [
-    #    {
-    #    title: "乱序",
-    #    href: "http://mida.re/"
-    #  }
-    #]
+friends: [
+        {
+        title: "旧时博客",
+        href: "http://iansmith.lofter.com"
+      }
+    ]
 
