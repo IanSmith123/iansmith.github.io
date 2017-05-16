@@ -1,5 +1,5 @@
 ---
-layout:		post
+layout:	post
 title:	"SCUCTF writeup"
 date:	2017-05-16 23:59:09  +0800
 subtitle:	"SCUCTF的writeup, 非官方版本"
@@ -10,7 +10,6 @@ tags:
    - SCUCTF
    - 网络安全
 ---
-
 
 ## 0x00 SCUCTF writeup  
 Les1ie写的writeup, 非官方版本
@@ -170,8 +169,7 @@ print u.text
 ## 0x04 fast
 SCUCTF还没开始出题人就秀了一把他出的题目，给我看了headers, 我不知道是啥，他说了句，实验吧的天下武功唯快不破。
 
-
-搜了一下思路有了，post回去就好，poc如下
+搜了一下思路有了，拿到flag发送回去就好，poc如下
 ```python
 import requests
 import base64
