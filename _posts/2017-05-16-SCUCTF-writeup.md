@@ -170,6 +170,7 @@ print u.text
 ## 0x04 fast
 SCUCTF还没开始出题人就秀了一把他出的题目，给我看了headers, 我不知道是啥，他说了句，实验吧的天下武功唯快不破。
 
+
 搜了一下思路有了，post回去就好，poc如下
 ```python
 import requests
