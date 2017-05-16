@@ -4,7 +4,6 @@ title:	"SCUCTF writeup"
 date:	2017-05-16 23:59:09  +0800
 subtitle:	"SCUCTF的writeup, 非官方版本"
 author:		"Les1ie"
-# header-img: "img/cocos2d/cocos-back-kingdom-rush-pic.jpg"
 catlog: true
 tags: 
    - writeup
@@ -261,7 +260,6 @@ UH-P
 []A\A]A^A_
 flag{re_start_007}
 welcome to the re world
-;*3$"
 GCC: (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
 GCC: (Ubuntu 4.8.2-19ubuntu1) 4.8.2
 .symtab
