@@ -247,86 +247,8 @@ welcome to the re world
 
 拖进64位的ida就行看到明文写的flag了，或者直接暴力的在terminal里面运行，
 ```bash
-$ strings babyre 
-/lib64/ld-linux-x86-64.so.2
-libc.so.6
-putchar
-printf
-__libc_start_main
-__gmon_start__
-GLIBC_2.2.5
-UH-P
-UH-P
-[]A\A]A^A_
+$ strings babyre |grep flag
 flag{re_start_007}
-welcome to the re world
-GCC: (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
-GCC: (Ubuntu 4.8.2-19ubuntu1) 4.8.2
-.symtab
-.strtab
-.shstrtab
-.interp
-.note.ABI-tag
-.note.gnu.build-id
-.gnu.hash
-.dynsym
-.dynstr
-.gnu.version
-.gnu.version_r
-.rela.dyn
-.rela.plt
-.init
-.text
-.fini
-.rodata
-.eh_frame_hdr
-.eh_frame
-.init_array
-.fini_array
-.jcr
-.dynamic
-.got
-.got.plt
-.data
-.bss
-.comment
-crtstuff.c
-__JCR_LIST__
-deregister_tm_clones
-register_tm_clones
-__do_global_dtors_aux
-completed.6973
-__do_global_dtors_aux_fini_array_entry
-frame_dummy
-__frame_dummy_init_array_entry
-__FRAME_END__
-__JCR_END__
-__init_array_end
-_DYNAMIC
-__init_array_start
-_GLOBAL_OFFSET_TABLE_
-__libc_csu_fini
-putchar@@GLIBC_2.2.5
-_ITM_deregisterTMCloneTable
-data_start
-_edata
-_fini
-printf@@GLIBC_2.2.5
-__libc_start_main@@GLIBC_2.2.5
-__data_start
-__gmon_start__
-__dso_handle
-_IO_stdin_used
-__libc_csu_init
-_end
-_start
-__bss_start
-main
-_Jv_RegisterClasses
-__TMC_END__
-_ITM_registerTMCloneTable
-flag
-_init
 ```
 直接找到了flag, 
 
@@ -378,6 +300,8 @@ root@localhost:~/ctf#
 源码的意思是调用二进制文件的时候传参数，长度为20的字符串，字符串4位作为一个整体，拆成五个部分，加起来等于0x21DD09ED就行。
 
 这个先放着吧...... 拖延症
+
+另外出题人说的最开始这个目录是有写权限的，比赛后面才去掉的... 我......之前没有来..233333  dirtycow
 
 
 ## 0x08 社工
