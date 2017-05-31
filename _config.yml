@@ -99,6 +99,10 @@ friends: [
       {
         title: "假装菜鸡的kmh",
         href: "http://sculaji.xyz"
+      },
+      {
+          title: "本辣鸡",
+          href: "test.com"
       }
     ]
 
