@@ -95,6 +95,10 @@ friends: [
         {
         title: "旧时博客",
         href: "http://iansmith.lofter.com"
+      },
+      {
+          title: "假装菜鸡的kmh",
+          href:"http://sculaj.xyz"
       }
     ]
 
