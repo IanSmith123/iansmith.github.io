@@ -4,6 +4,7 @@ title:		"metasploit学习笔记"
 subtitle:		"分享一下以前写的msf笔记"
 date:		2017-06-08 23:21:49 +0800
 author:		"Les1ie"
+catlog:   true
 tags: 
   - 学习笔记
   - metasploit
