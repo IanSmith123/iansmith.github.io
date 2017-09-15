@@ -180,7 +180,6 @@ r = requests.Session()
 # u = r.post(url,u payload, cookies=cookie)
 u = requests.get(url, cookies=cookie)
 print u.text
-
 ```
 
 请求的页面不能加上login..., 也不需要再次登录，直接带cookie去get请求就出flag了..
