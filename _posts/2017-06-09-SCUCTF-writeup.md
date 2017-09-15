@@ -4,7 +4,7 @@ title:	"SCUCTF writeup"
 date:	2017-05-16 23:59:09  +0800
 subtitle:	"SCUCTF的writeup, 非官方版本"
 author:		"Les1ie"
-catlog: true
+catalog: true
 tags:
    - writeup
    - SCUCTF
@@ -249,85 +249,15 @@ welcome to the re world
 拖进64位的ida就行看到明文写的flag了，或者直接暴力的在terminal里面运行，
 ```bash
 $ strings babyre 
-/lib64/ld-linux-x86-64.so.2
-libc.so.6
-putchar
-printf
-__libc_start_main
-__gmon_start__
-GLIBC_2.2.5
-UH-P
-UH-P
-[]A\A]A^A_
+.
+.
+.
+
 flag{re_start_007}
 welcome to the re world
-GCC: (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
-GCC: (Ubuntu 4.8.2-19ubuntu1) 4.8.2
-.symtab
-.strtab
-.shstrtab
-.interp
-.note.ABI-tag
-.note.gnu.build-id
-.gnu.hash
-.dynsym
-.dynstr
-.gnu.version
-.gnu.version_r
-.rela.dyn
-.rela.plt
-.init
-.text
-.fini
-.rodata
-.eh_frame_hdr
-.eh_frame
-.init_array
-.fini_array
-.jcr
-.dynamic
-.got
-.got.plt
-.data
-.bss
-.comment
-crtstuff.c
-__JCR_LIST__
-deregister_tm_clones
-register_tm_clones
-__do_global_dtors_aux
-completed.6973
-__do_global_dtors_aux_fini_array_entry
-frame_dummy
-__frame_dummy_init_array_entry
-__FRAME_END__
-__JCR_END__
-__init_array_end
-_DYNAMIC
-__init_array_start
-_GLOBAL_OFFSET_TABLE_
-__libc_csu_fini
-putchar@@GLIBC_2.2.5
-_ITM_deregisterTMCloneTable
-data_start
-_edata
-_fini
-printf@@GLIBC_2.2.5
-__libc_start_main@@GLIBC_2.2.5
-__data_start
-__gmon_start__
-__dso_handle
-_IO_stdin_used
-__libc_csu_init
-_end
-_start
-__bss_start
-main
-_Jv_RegisterClasses
-__TMC_END__
-_ITM_registerTMCloneTable
-flag
-_init
+.
+.
+.
 ```
 直接找到了flag, 
 
@@ -374,15 +304,14 @@ int main(int argc, char *argv[]) {
 }
 root@localhost:~/ctf# 
 ```
-试了下该用户没有对该目录没有写权限，对flag文件没有r权限，对二进制文件有x权限，只能通过二进制文件去打印flag内容，但是我一直没写出poc来找这个长度为20的字符串，很多人都说这个炒鸡简单，而我就是没理解到，尬，再看看。
+试了下该用户没有对该目录没有写权限，对flag文件没有r权限，对二进制文件有x权限，只能通过二进制文件去打印flag内容
 
 源码的意思是调用二进制文件的时候传参数，长度为20的字符串，字符串4位作为一个整体，拆成五个部分，加起来等于0x21DD09ED就行。
 
-这个先放着吧...... 拖延症
 
 
 ## 0x08 社工
-留了一个v2ex的节点，进去看到提示说有人发flag给他，还有个hint事flag_hi_github, 摆明就是github dork嘛... 
+留了一个v2ex的节点，进去看到提示说有人发flag给他，还有个hint是flag_hi_github, 摆明就是github dork嘛... 
 
 搜了下iscumail，在code里面找到一条记录，是126的邮箱，但是看了下时间是2016年github索引的文件，想着这个不会这么久之前的文件了，就没继续下去了
 
@@ -396,14 +325,14 @@ root@localhost:~/ctf#
 ## 0x09 php
 最后放的一道题，300的Point， 看着是php写的就想着放弃，翻了下发现有一个留言模块，但是试了下根本没用，因为后台没处理，然后就没做这道题了，因为没啥时间了。
 
-出题人最后讲writeup的时候是php的文件xxxx记不住了，太菜了不会php,
+这个是php文件包含，
 大概就是
 ```
 http://xxx.xx/index?index=xxxxxx
 ```
-没有对xxx进行限制，然后就直接利用他执行系统命令了
+没有对xxx进行限制，然后就直接利用他执行命令了
 
-poc记不住了,等出题人给writeup吧
+
 
 ## 0x0A 总结
 炒鸡菜鸡，writeup随便写的记一下思路，说实话没做过这么简单的ctf题，233333
