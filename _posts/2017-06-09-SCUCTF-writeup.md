@@ -1,9 +1,9 @@
 ---
-layout:	post
-title:	"SCUCTF writeup"
-date:	2017-05-16 23:59:09  +0800
-subtitle:	"SCUCTF的writeup, 非官方版本"
-author:		"Les1ie"
+layout: post
+title:  "SCUCTF writeup"
+date:  2017-05-16 23:59:09  +0800
+subtitle:   "SCUCTF的writeup, 非官方版本"
+author:    "Les1ie"
 catalog: true
 tags:
    - writeup
