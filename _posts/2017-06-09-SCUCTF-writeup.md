@@ -190,6 +190,7 @@ SCUCTF还没开始出题人就秀了一把他出的题目，给我看了headers,
 
 搜了一下思路有了，拿到flag发送回去就好，poc如下
 
+
 ```python
 import requests
 import base64
