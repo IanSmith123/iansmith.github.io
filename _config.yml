@@ -60,12 +60,13 @@ kramdown:
 
 # Analytics settings
 # Baidu Analytics 
-ba_track_id: [63e20362d0a853112b4d8fd7c462d956]
+#ba_track_id: [63e20362d0a853112b4d8fd7c462d956]
 
 # Google Analytics
 # ###################################################################################
 # Les1ie modified start
 ga_track_id: "UA-107579633-1"
+ga_domain: les1ie.com
 #ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
 #ga_domain: huangxuan.me
 #########################################################end
