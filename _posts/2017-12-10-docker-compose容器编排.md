@@ -113,6 +113,8 @@ EXPOSE 80
 因为web需要用到`postgresql`，所以需要`php`的`psql`的支持，网上搜寻一圈找到了需要安装的包，这里只有自己写`Dockerfile`来加入这些文件了
 
 - `init_mail_server` 这个容器是一个`flask`程序的容器，用于监听是否有用户提交订阅信息，`php`负责处理用户提交的`post`请求然后把订阅的内容插入到数据库中，然后通过一个`get`请求通知`flask`写的一个`api`,然后`flask`程序会去数据库取出来当前的所有的用户的信息，然后去`redis`数据库中取出用户注册之前的用户列表，通过两个列表的存在区别的用户来确定哪一些是新注册的用户，然后去`postgres`中取出每一个站点的最新的十条新闻，推送到用户的邮箱，这里因为需要用到自定义的`python`包，所以自己写了`Dockerfile`, 路径是`./init_send/Dockerfile`
+
+  ​
 ```
 ROM tiangolo/uwsgi-nginx-flask:python3.6
 
@@ -123,8 +125,11 @@ RUN pip install redis==2.10.6 arrow==0.10.0 psycopg2==2.7.3.2
 ```
 
 - `mail_redis` 这个是一个`redis`的服务器，不对外开放端口，这里开放是方便我调试，上线后会关闭，不然又是一个妥妥的`redis`未授权
+
 - `manage_python` 是项目主程序的容器，执行的入口是`python manage.py` 然后会调用一系列的模块完成新闻爬取，内容更新比较，邮件推送，生成`feed.xml`文件到`web`目录等功能，由于这个程序一旦启动就需要连接到`postgres`数据库，所以第一次我是启动失败了的，然后网上搜了下，看到了`wait-for-it.sh`这个东西，以前其实也见到过，但是不是很了解他的功能，刚好今天有这个需求，所以大概了解了一下，他是通过监听互联的容器的端口来检测服务是否启动的，如果对应的端口起来了，那么就可以判断容器是已经完成启动了，然后就会执行后面的入口程序。
-主程序的`Dockerfile`如下
+  主程序的`Dockerfile`如下
+
+  ​
 
 ```
 FROM python:3.6.3-jessie
@@ -149,6 +154,8 @@ RUN pip install psycopg2==2.7.3.2 arrow==0.12.0 redis==2.10.6 pyrss2gen==1.1 \
 
 在`/etc/nginx/conf.d/scurss.conf`
 
+
+
 ```
 server {
         listen 80; server_name scurss.les1ie.com;
@@ -167,6 +174,8 @@ server {
 ```
 
 然后去`dns`里面加入一条`scurss.les1ie.com`解析到开发机
+
+
 
 ## 跋
 最近事情太多了忙不过来，几个项目同时在赶工期，一天到晚敲敲敲，头晕
