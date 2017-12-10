@@ -34,37 +34,34 @@ $ tree
 ```
 version: "3"
 services:
-  postgresdb:
+  pgsqldb:
     image: postgres:10.1
     container_name: pgsqldb
-    #    dockerfile: Dockerfile
     restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: xxxxxxx
+      POSTGRES_PASSWORD: ms17010
 
-  web:
-      #      image: php:5.6-apache
+  scurss_web:
     build:
       context: .
       dockerfile: ./web/Dockerfile
-      #image: php:5.6-apache-jessie
     container_name: scurss_web
-      #      restart: always
+    restart: always
     ports:
       - "8000:80"
     volumes:
       - ./web/:/var/www/html/
     depends_on:
-      - postgresdb
+      - pgsqldb
+      - init_mail_server
 
   mail_redis:
     image: redis
     container_name: mail_redis
     restart: always
-    ports:
-      - "6378:6379"
+
   init_mail_server:
     build:
       context: .
@@ -72,11 +69,10 @@ services:
     container_name: init_mail_server
     volumes:
       - ./init_send:/app
-    ports:
-      - "5431:80"
     depends_on:
       - mail_redis
-      - postgresdb
+      - pgsqldb
+    restart: always
 
   manage_python:
     build:
@@ -86,18 +82,16 @@ services:
     volumes:
       - .:/scurss
     working_dir: /scurss
+    restart: always
     depends_on:
       - mail_redis
-      - postgresdb
-
-    command: ["./wait-for-it.sh", "postgresdb:5432", "--", "python", "manage.py"]
-
-
+      - pgsqldb
+    command: ["./wait-for-it.sh", "pgsqldb:5432", "--", "python", "manage.py"]
 
 ```
 
-- `postgresdb`，这是一个`postgres`的数据库，用来存储爬虫获取到的内容，端口映射出来方便调试，上线了之后可以去掉端口映射，直接使用容器互联，同时在环境变量中把容器的密码传了进去
-- `php-fpm` 这个是web容器，最开始是用的纯php容器，后来觉得懒得麻烦，直接搞了个带apache的，把目录挂载到`/var/www/html`就能用了，当然这个潜在的问题就是整个web目录都暴露在里面了，比如`Dockerfile`就可以直接访问到，当然我可以选择不把`Dockerfile`放到这个目录, `./web/Dockerfile`内容如下
+- `pgsqldb`，这是一个`postgres`的数据库，用来存储爬虫获取到的内容，端口映射出来方便调试，上线了之后可以去掉端口映射，直接使用容器互联，同时在环境变量中把容器的密码传了进去
+- `scurss_web` 这个是web容器，最开始是用的纯php容器，后来觉得懒得麻烦，直接搞了个带apache的，把目录挂载到`/var/www/html`就能用了，当然这个潜在的问题就是整个web目录都暴露在里面了，比如`Dockerfile`就可以直接访问到，当然我可以选择不把`Dockerfile`放到这个目录, `./web/Dockerfile`内容如下
 
 ```
 FROM php:5.6-apache
@@ -112,7 +106,7 @@ EXPOSE 80
 
 因为web需要用到`postgresql`，所以需要`php`的`psql`的支持，网上搜寻一圈找到了需要安装的包，这里只有自己写`Dockerfile`来加入这些文件了
 
-- `init_mail_server` 这个容器是一个`flask`程序的容器，用于监听是否有用户提交订阅信息，`php`负责处理用户提交的`post`请求然后把订阅的内容插入到数据库中，然后通过一个`get`请求通知`flask`写的一个`api`,然后`flask`程序会去数据库取出来当前的所有的用户的信息，然后去`redis`数据库中取出用户注册之前的用户列表，通过两个列表的存在区别的用户来确定哪一些是新注册的用户，然后去`postgres`中取出每一个站点的最新的十条新闻，推送到用户的邮箱，这里因为需要用到自定义的`python`包，所以自己写了`Dockerfile`, 路径是`./init_send/Dockerfile`，内容如下
+- `init_mail_server` 这个容器是一个`flask`程序的容器，用于监听是否有用户提交订阅信息，`php`负责处理用户提交的`POST`请求然后把订阅的内容插入到数据库中，然后通过一个`get`请求通知`flask`写的一个`api`,然后`flask`程序会去数据库取出来当前的所有的用户的信息，然后去`redis`数据库中取出用户注册之前的用户列表，通过两个列表的存在差异的用户来确定哪一些是新注册的用户，然后去`postgres`中取出每一个站点的最新的十条新闻，推送到用户的邮箱，这里因为需要用到自定义的`python`包，所以自己写了`Dockerfile`, 路径是`./init_send/Dockerfile`，内容如下
 
 
 ```
@@ -126,7 +120,7 @@ RUN pip install redis==2.10.6 arrow==0.10.0 psycopg2==2.7.3.2
 
 - `mail_redis` 这个是一个`redis`的服务器，不对外开放端口，这里开放是方便我调试，上线后会关闭，不然又是一个妥妥的`redis`未授权
 - `manage_python` 是项目主程序的容器，执行的入口是`python manage.py` 然后会调用一系列的模块完成新闻爬取，内容更新比较，邮件推送，生成`feed.xml`文件到`web`目录等功能，由于这个程序一旦启动就需要连接到`postgres`数据库，所以第一次我是启动失败了的，然后网上搜了下，看到了`wait-for-it.sh`这个东西，以前其实也见到过，但是不是很了解他的功能，刚好今天有这个需求，所以大概了解了一下，他是通过监听互联的容器的端口来检测服务是否启动的，如果对应的端口起来了，那么就可以判断容器是已经完成启动了，然后就会执行后面的入口程序。
-主程序的`Dockerfile`如下
+  主程序的`Dockerfile`如下
 
 ```
 FROM python:3.6.3-jessie
@@ -146,6 +140,11 @@ RUN pip install psycopg2==2.7.3.2 arrow==0.12.0 redis==2.10.6 pyrss2gen==1.1 \
 
 那么就用开发机吧
 
+只要在任意的配置好了docker和docker-compose的地方，都可以直接运行整个项目
+```
+$ docker-compose up -d
+```
+所有的搭建环境的事情，我们都不需要关心，不用关心这是CentOS还是Ubuntu，或者是Debian
 
 因为80端口不能只挂这一个服务，所以自然用了nginx来反代web,
 
