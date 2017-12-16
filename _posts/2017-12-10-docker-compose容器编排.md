@@ -41,7 +41,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: ms17010
+      POSTGRES_PASSWORD: xxxxx
 
   scurss_web:
     build:
