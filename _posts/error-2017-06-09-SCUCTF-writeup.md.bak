@@ -94,7 +94,6 @@ var_dump($html);
 ## 0x02哈希与科学计数法
 进去就让我们查看源代码，看到有个hidden的1.txt, 打开看又是一个代码审计题目
 
-
 ```php
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -265,7 +264,6 @@ print r.text
 在64bit的服务器里运行如下:
 
 ```bash
-~  23:23:59
 $ ./babyre 
 welcome to the re world
 ```
