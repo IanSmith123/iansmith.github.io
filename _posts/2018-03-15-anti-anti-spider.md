@@ -1,7 +1,7 @@
 ---
 layout:    post
-title:    "和反爬虫的斗争"
-subtitle:   "感谢教务处为我们技术不断进步做出的努力"
+title:    "和教务处反爬虫之间的游戏"
+subtitle:   "感谢教务处为我们技术进步做出的不懈努力"
 data: 2018-03-15 00:19:03 +0800
 author:   "Les1ie"
 tags:
@@ -134,6 +134,8 @@ RUN apt install -f
 
 测试了其他网站，基本表现一致，但是教务处就不行，遂放弃phantomjs方案
 
+当时在`python`群里面问了下这个奇怪的现象，某大腿说可以通过一些特定的返回值可以知道你是哪一种headless... 找到了[一篇博客](https://antoinevastel.com/bot%20detection/2017/08/05/detect-chrome-headless.html)就是检测chrome的headless的, hacker news上面也看到有讨论（如果教务处管理员看到了这里不妨试试，这样技术才能互相进步嘛 :smiley:
+
 
 
 
@@ -141,7 +143,7 @@ RUN apt install -f
 又找到了selenium提供的chrome, 基于他的镜像去构建，但是还是有问题，现在想想可能是当时忘记加`argument`了....头晕了吧
 
 到了晚上，决定再次手动装chrome测试一下
-!![](http://oqyjccf1n.bkt.clouddn.com/20180314-214736.png) 突然发现搞定啦
+![](http://oqyjccf1n.bkt.clouddn.com/20180314-214736.png) 突然发现搞定啦 :man_shrugging:
 
 
 接下来就需要在docker中装好这个chrome了
