@@ -73,7 +73,7 @@ $ curl 'http://jwc.scu.edu.cn/jwc/frontPage.action' -H 'DNT: 1' -H 'Accept-Encod
 
 debian的服务器是python3.5, 装pyenv吧..
 
-pyenv装好了，改了`.zshrc`， 环境变量一直不生效，不懂为何，决定拖一个`python 3.6.4`的镜像下来试试，几经周则配置好了`requests-html`之后，发现报同样的错误，这时候可能需要甩锅给`requests-html`了，看来这个是走不通了，那么换一个方法
+pyenv装好了，改了`.zshrc`， 环境变量一直不生效，不懂为何，决定拖一个`python 3.6.4`的镜像下来试试，几经周折配置好了`requests-html`之后，发现报同样的错误，这时候可能需要甩锅给`requests-html`了，看来这个是走不通了，那么换一个方法
 
 
 ## headless
