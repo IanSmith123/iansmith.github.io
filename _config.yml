@@ -75,7 +75,7 @@ ga_domain: les1ie.com
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Don't be evil."
+sidebar-about-description: "苟有恒,何必三更眠五更起; 最无益,莫过一日曝十日寒。"
 sidebar-avatar: /img/avatar-Les1ie.jpg     # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
