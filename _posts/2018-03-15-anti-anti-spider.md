@@ -59,7 +59,7 @@ $ curl 'http://jwc.scu.edu.cn/jwc/frontPage.action' -H 'DNT: 1' -H 'Accept-Encod
 
 
 混淆的js大概是这个样子
-![](http://oqyjccf1n.bkt.clouddn.com/20180314-131854.png)
+![](http://static.scuseek.com/20180314-131854.png)
 
 
 研究了下，教务处不按常理出牌，只认`cookie`, 不会去管`refer`和`User-Agent`，`cookie`里面有`jsessionid`, 大概一分钟过期，混淆的js是不想去分析的。
@@ -69,7 +69,7 @@ $ curl 'http://jwc.scu.edu.cn/jwc/frontPage.action' -H 'DNT: 1' -H 'Accept-Encod
 看着这些js一个头两个大，自然想到了用`requests`的作者刚刚出的`requests-html`了，本机测试了下，报字符集错误，搜了下按照作者的解决方法也并没有解决，教务处也是utf-8的,莫非是我`cmd`的锅？ 于是到服务器上去试了试，
 
 突然注意到文档最后的一行字
-![](http://oqyjccf1n.bkt.clouddn.com/20180314-213356.png)
+![](http://static.scuseek.com/20180314-213356.png)
 
 debian的服务器是python3.5, 装pyenv吧..
 
@@ -84,7 +84,7 @@ pyenv装好了，改了`.zshrc`， 环境变量一直不生效，不懂为何，
 
 改了几行代码，windows上把`chromedriver.exe`丢到同一目录下就ok, windows上面已经可以正常运行，headless总共半个小时就搞定了，感觉灰常舒服，如此轻松就干掉了教务处的anti spider 甚至想调戏一下教务处管理员，于是改了下ua..
 
-![](http://oqyjccf1n.bkt.clouddn.com/20180314-204224.png)
+![](http://static.scuseek.com/20180314-204224.png)
 
 
 
@@ -113,7 +113,7 @@ RUN apt install -f
 
 
 服务器上装倒是装好了，但是不知道装好了运行时啥子样子的呀
-![](http://oqyjccf1n.bkt.clouddn.com/20180314-210214.png)
+![](http://static.scuseek.com/20180314-210214.png)
 
 这个问题丢到了`docker`的群和`python`的群询问一番，发现没有人用过linux  server + python + selenium + chrome headless + docker 
 
@@ -124,7 +124,7 @@ RUN apt install -f
 
 ## 回归phantomjs
 算了，还是用最原始的phantomjs吧，虽然去年这东西就停止更新了，然而本着能用的原则，再写了几行代码适配了`phantomjs`,运行的时候发现selenium已经弃用
-![](http://oqyjccf1n.bkt.clouddn.com/20180315-003323.png)
+![](http://static.scuseek.com/20180315-003323.png)
 
 并且用phantomjs不能过反爬虫验证，拿不到想要的源码，chrome和firefox都能过。
 
@@ -143,7 +143,7 @@ RUN apt install -f
 又找到了selenium提供的chrome, 基于他的镜像去构建，但是还是有问题，现在想想可能是当时忘记加`argument`了....头晕了吧
 
 到了晚上，决定再次手动装chrome测试一下
-![](http://oqyjccf1n.bkt.clouddn.com/20180314-214736.png) 突然发现搞定啦 :man_shrugging:
+![](http://static.scuseek.com/20180314-214736.png) 突然发现搞定啦 :man_shrugging:
 
 
 接下来就需要在docker中装好这个chrome了
@@ -191,7 +191,7 @@ ENV LANG C.UTF-8
 - docker里面装chrome有点麻烦，之前找过gist上面的脚本，但因为某些众所周知的原因并不能直接下载chrome的deb
 - phantomjs这里不能工作了，原因不明，可能是他的反爬虫是针对phantomjs的？有时间了用工具反混淆试试看下他的js到底做了什么
 - 感觉这个爬虫工具挺好用的呀，接收通知比较方便，所以在QQ空间给同学们推荐了一发，三个小时后看数据库发现增加了4个用户，翻了一番 
-- 后台看请求记录的时候才注意到， ua里面除了说明手机型号，平台之外，还说明了网络类型![](http://oqyjccf1n.bkt.clouddn.com/20180319-232422.png)
+- 后台看请求记录的时候才注意到， ua里面除了说明手机型号，平台之外，还说明了网络类型![](http://static.scuseek.com/20180319-232422.png)
 
 
 

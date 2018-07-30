@@ -16,7 +16,7 @@ tags:
 
 大概长这个样子
 
- ![](http://oqyjccf1n.bkt.clouddn.com/20180425-193127.png)
+ ![](http://static.scuseek.com/20180425-193127.png)
 出厂的时候是装好了win10的，但是我们的程序需要运行在ubuntu上
 
 以前是直接就装好了ubuntu 16.04.3，用了很长一段时间，但是最近发现120G 的硬盘被撑满了， 看了下发现是 `/var/log/kern.log`, `/var/log/syslog`两个文件几十个G， 
