@@ -36,6 +36,12 @@ influxdb+grafana 监控CPU使用情况
 
 
 
+绿色是笔记本，黄色是服务器 :)
+
+![](http://static.scuseek.com/20180929-234541.png)
+
+
+
 # 需要的环境
 
 - influxdb
@@ -46,15 +52,19 @@ influxdb+grafana 监控CPU使用情况
 # 使用方法
 
 1. 存数据库的服务器上
-  ```
-  docker-compose up -d
-  ```
+   ```
+   docker-compose up -d
+   ```
 
 2. 需要监控的服务器上 
 
    ```bash
    pip3 install -r requirements.txt
    python3 main.py
+   ```
+   为了方便部署，把封装的文件合成了一个文件，小脚本还是怎么方便怎么来 :) 下面这个脚本更方便一点
+   ```
+   python3 get-usage-and-upload.py
    ```
 3. grafana默认账户密码admin admin, 登录进去鼠标点点点点点点点设定data source 
 ![](http://static.scuseek.com/20180929-202723.png)
