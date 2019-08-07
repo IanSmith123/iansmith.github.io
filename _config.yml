@@ -3,8 +3,8 @@ title: Les1ie
 SEOTitle: 宇宇 | Les1ie's Blog
 header-img: img/home-bg.jpg
 email: iansmith@qq.com
-description: "网络安全没入门的大二码农。"
-keyword: "Python, Vim, Kali, sqlmap"
+description: "行百里者半九十。"
+keyword: "computer science, security, hacker"
 url: "https://iansmith123.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -126,7 +126,10 @@ friends: [
           title: "易诗雷",
           href: "http://chanchan.me"
        },
-
+        {
+          title: "xpc",
+          href: "https://xiaopc.org"
+       },
       {
           title: "本辣鸡",
           href: "http://les1ie.com/about"
